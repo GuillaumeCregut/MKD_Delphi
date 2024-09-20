@@ -2,6 +2,7 @@ object DMDatabase: TDMDatabase
   Height = 480
   Width = 640
   object FDTableBrand: TFDTable
+    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -12,9 +13,24 @@ object DMDatabase: TDMDatabase
   object dbConnection: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
+      
+        'Database=F:\projets\Embarcadero\ModelKitDatabase\Win32\Debug\Mod' +
+        'elsKitDatabase.db'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     Left = 184
     Top = 160
+  end
+  object SystemQuery: TFDQuery
+    Connection = dbConnection
+    Transaction = Transaction
+    Left = 424
+    Top = 168
+  end
+  object Transaction: TFDTransaction
+    Connection = dbConnection
+    Left = 344
+    Top = 144
   end
 end

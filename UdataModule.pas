@@ -14,6 +14,8 @@ type
   TDMDatabase = class(TDataModule)
     FDTableBrand: TFDTable;
     dbConnection: TFDConnection;
+    SystemQuery: TFDQuery;
+    Transaction: TFDTransaction;
   private
     { Déclarations privées }
   public
