@@ -1,8 +1,19 @@
-object DataModule1: TDataModule1
+object DMDatabase: TDMDatabase
   Height = 480
   Width = 640
+  object FDTableBrand: TFDTable
+    IndexFieldNames = 'id'
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'brand'
+    Left = 144
+    Top = 24
+  end
   object dbConnection: TFDConnection
-    Left = 216
-    Top = 80
+    Params.Strings = (
+      'LockingMode=Normal'
+      'DriverID=SQLite')
+    LoginPrompt = False
+    Left = 184
+    Top = 160
   end
 end
