@@ -3,10 +3,11 @@ object DMDatabase: TDMDatabase
   Width = 640
   object FDTableBrand: TFDTable
     IndexFieldNames = 'id'
+    Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'brand'
-    Left = 144
-    Top = 24
+    Left = 24
+    Top = 16
   end
   object dbConnection: TFDConnection
     Params.Strings = (

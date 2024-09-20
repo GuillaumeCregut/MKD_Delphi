@@ -39,8 +39,8 @@ type
     { Déclarations privées }
     tempo :  TFDConnection;
     isSetup : boolean;
-    procedure saveIniFile;
-    procedure initDatabase(driver: String; path: string);
+    procedure saveIniFile(dbPath : string);
+    procedure initDatabase(path: string);
   public
     { Déclarations publiques }
   end;
@@ -54,23 +54,20 @@ implementation
 
 uses UdataModule;
 
-procedure TFPpale.initDatabase(driver: String; path: string);
+procedure TFPpale.initDatabase(path: string);
 var
   query : string;
    List: TStringList;
   Stream: TResourceStream;
   I : integer;
 begin
-
-  DMDatabase.dbConnection.Params.DriverID:='SQLite';
-  DMDatabase.dbConnection.Params.Database:= ChangeFileExt(Application.ExeName,'.db'); //Database:= ChangeFileExt(Application.ExeName,'.db');
+  DMDatabase.dbConnection.Params.Database:= path; //Database:= ChangeFileExt(Application.ExeName,'.db');
   Stream := TResourceStream.Create(HInstance, 'Resource_1', RT_RCDATA);
   try
   try
     List := TStringList.Create;
     try
       List.LoadFromStream(Stream,TEncoding.UTF8);
-      Label1.Caption:=IntToStr(List.Count);
       for I := 0 to list.Count-1 do
       begin
         query:=List[I];
@@ -90,13 +87,15 @@ begin
    DMDatabase.dbConnection.Close;
 end;
 
-procedure TFPpale.saveIniFile;
+procedure TFPpale.saveIniFile(dbPath : string);
 var
   settingsFile : TIniFile;
  begin
      settingsFile:=TIniFile.Create(ChangeFileExt(Application.ExeName,'.ini'));
     try
        settingsFile.WriteString('setup', 'version', '1.0a');
+       settingsFile.WriteBool('init','setup',isSetup);
+       settingsFile.WriteString('db','path',dbPath);
     finally
       settingsFile.Free;
     end;
@@ -105,25 +104,29 @@ end;
 procedure TFPpale.FormCreate(Sender: TObject);
 var
   settingsFile : TIniFile;
+  dataPath : string;
 begin
     settingsFile:=TIniFile.Create(ChangeFileExt(Application.ExeName,'.ini'));
     try
-
-
     isSetup:= settingsFile.ReadBool('init','setup',false);
-    if not isSetup then
-     begin
-       ShowMessage('Pas initialisée');
-       initDatabase('','');
-       saveIniFile();
-     end
-     else
-     begin
-       ShowMessage('initialisée');
-     end;
+    dataPath:=settingsFile.ReadString('db','path',ChangeFileExt(Application.ExeName,'.db'));
+
     finally
       settingsFile.Free;
     end;
+    if not FileExists(dataPath) then
+      isSetup:=false;
+    if not isSetup then
+     begin
+       ShowMessage('La base de données n''a pas été trouvée, elle va être créée');
+       initDatabase(dataPath);
+       saveIniFile(dataPath);
+     end;
+     if not FileExists(dataPath) then
+     begin
+       raise Exception.Create('Un problème a été rencontré avec la base de données.');
+     end;
+     DMDatabase.dbConnection.Open();
 end;
 
 end.
