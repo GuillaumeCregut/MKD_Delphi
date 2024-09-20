@@ -2,3 +2,4 @@ __recovery/*
 __history/*
 *.dproj.local
 win32/*
+*.identcache
