@@ -134,6 +134,10 @@
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="UBrand.pas">
+            <Form>FBrand</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
