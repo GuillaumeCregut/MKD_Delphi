@@ -14,6 +14,10 @@ type
   TDMDatabase = class(TDataModule)
     FDTableBrand: TFDTable;
     dbConnection: TFDConnection;
+    SystemQuery: TFDQuery;
+    Transaction: TFDTransaction;
+    procedure dbConnectionError(ASender, AInitiator: TObject;
+      var AException: Exception);
   private
     { Déclarations privées }
   public
@@ -32,5 +36,11 @@ implementation
 {$R *.dfm}
 
 
+
+procedure TDMDatabase.dbConnectionError(ASender, AInitiator: TObject;
+  var AException: Exception);
+begin
+    raise Exception.Create('Erreur dans la base');
+end;
 
 end.
