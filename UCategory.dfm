@@ -27,6 +27,7 @@ object FCategory: TFCategory
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnCellClick = DBGCategoryCellClick
     Columns = <
       item
         Expanded = False
