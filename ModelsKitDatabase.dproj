@@ -138,6 +138,10 @@
             <Form>FBrand</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UCountry.pas">
+            <Form>FCountry</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
