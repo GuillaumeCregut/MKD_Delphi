@@ -19,6 +19,7 @@ type
     FDTableCountry: TFDTable;
     FDTableCategory: TFDTable;
     FDTablePeriod: TFDTable;
+    FDTableScale: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
   private

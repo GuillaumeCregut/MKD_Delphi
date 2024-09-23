@@ -61,4 +61,13 @@ object DMDatabase: TDMDatabase
     Left = 384
     Top = 240
   end
+  object FDTableScale: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'scale'
+    Left = 336
+    Top = 368
+  end
 end
