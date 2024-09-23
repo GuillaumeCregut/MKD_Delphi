@@ -43,7 +43,6 @@ object FCountry: TFCountry
     ActivePage = TSCountryUpdate
     Align = alBottom
     TabOrder = 1
-    ExplicitTop = 408
     object TSCountryAdd: TTabSheet
       Caption = 'Ajouter'
       object Label1: TLabel
