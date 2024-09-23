@@ -9,7 +9,8 @@ uses
   UBrand in 'UBrand.pas' {FBrand},
   UCountry in 'UCountry.pas' {FCountry},
   UCategory in 'UCategory.pas' {FCategory},
-  UPeriod in 'UPeriod.pas' {FPeriod};
+  UPeriod in 'UPeriod.pas' {FPeriod},
+  UScale in 'UScale.pas' {FScale};
 
 {$R *.res}
 
@@ -22,5 +23,6 @@ begin
   Application.CreateForm(TFCountry, FCountry);
   Application.CreateForm(TFCategory, FCategory);
   Application.CreateForm(TFPeriod, FPeriod);
+  Application.CreateForm(TFScale, FScale);
   Application.Run;
 end.
