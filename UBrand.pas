@@ -51,10 +51,11 @@ implementation
 
 procedure TFBrand.RemoveBrandExecute(Sender: TObject);
 var
-  name : string;
+  name: string;
 begin
   name := DSBrand.DataSet.FieldByName('name').AsString;
-  if MessageDlg('Voulez vous supprimer '+name+' ?',TMsgDlgType.mtWarning,[TMsgDlgBtn.mbYes,TMsgDlgBtn.mbNo],0,TMsgDlgBtn.mbNo)=mrYes then
+  if MessageDlg('Voulez vous supprimer ' + name + ' ?', TMsgDlgType.mtWarning,
+    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, TMsgDlgBtn.mbNo) = mrYes then
   begin
     DMDatabase.FDTableBrand.Delete;
     refreshValues;
@@ -69,8 +70,14 @@ begin
   newName := EBrandName.Text;
   DMDatabase.FDTableBrand.Append;
   DMDatabase.FDTableBrand.FieldByName('name').AsString := newName;
-  DMDatabase.FDTableBrand.Post;
+  try
+    DMDatabase.FDTableBrand.Post;
+  except
+    DMDatabase.FDTableBrand.Cancel;
+    showMessage('Le nom saisi existe déjà');
+  end;
   DMDatabase.FDTableBrand.Refresh;
+  refreshValues;
 end;
 
 procedure TFBrand.BUpdateBrandNameClick(Sender: TObject);
@@ -87,14 +94,14 @@ begin
     DMDatabase.FDTableBrand.Edit;
     DMDatabase.FDTableBrand.FieldByName('name').AsString := oldName;
     DMDatabase.FDTableBrand.Post;
-    EBrandUpdateName.Text:= oldName;
+    EBrandUpdateName.Text := oldName;
   end;
   DMDatabase.FDTableBrand.Refresh;
 end;
 
 procedure TFBrand.DBGrid1CellClick(Column: TColumn);
 begin
- refreshValues;
+  refreshValues;
 end;
 
 procedure TFBrand.FormShow(Sender: TObject);
@@ -106,7 +113,7 @@ end;
 
 procedure TFBrand.refreshValues;
 begin
-   EBrandUpdateName.Text := DSBrand.DataSet.FieldByName('name').AsString;
+  EBrandUpdateName.Text := DSBrand.DataSet.FieldByName('name').AsString;
   oldName := DSBrand.DataSet.FieldByName('name').AsString;
 end;
 

@@ -16,8 +16,8 @@ object FBrand: TFBrand
     Left = 0
     Top = 0
     Width = 957
-    Height = 393
-    Align = alTop
+    Height = 362
+    Align = alClient
     DataSource = DSBrand
     PopupMenu = PUMBrand
     ReadOnly = True
@@ -44,9 +44,6 @@ object FBrand: TFBrand
     ActivePage = TSBrandUpdate
     Align = alBottom
     TabOrder = 1
-    ExplicitLeft = 382
-    ExplicitTop = 399
-    ExplicitWidth = 289
     object TSBrandAdd: TTabSheet
       Caption = 'Ajouter'
       object Label1: TLabel
@@ -107,7 +104,7 @@ object FBrand: TFBrand
         OnClick = BUpdateBrandNameClick
       end
       object EBrandUpdateName: TEdit
-        Left = 97
+        Left = 104
         Top = 32
         Width = 184
         Height = 23
