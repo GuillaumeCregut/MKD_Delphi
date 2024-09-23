@@ -2,8 +2,8 @@ object FBrand: TFBrand
   Left = 0
   Top = 0
   Caption = 'Marques'
-  ClientHeight = 529
-  ClientWidth = 624
+  ClientHeight = 555
+  ClientWidth = 957
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,16 +15,19 @@ object FBrand: TFBrand
   object DBGrid1: TDBGrid
     Left = 0
     Top = 0
-    Width = 249
-    Height = 529
-    Align = alLeft
+    Width = 957
+    Height = 393
+    Align = alTop
     DataSource = DSBrand
+    PopupMenu = PUMBrand
+    ReadOnly = True
     TabOrder = 0
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -12
     TitleFont.Name = 'Segoe UI'
     TitleFont.Style = []
+    OnCellClick = DBGrid1CellClick
     Columns = <
       item
         Expanded = False
@@ -33,46 +36,103 @@ object FBrand: TFBrand
         Visible = True
       end>
   end
-  object Panel1: TPanel
-    Left = 255
-    Top = 8
-    Width = 368
-    Height = 217
+  object PCBrand: TPageControl
+    Left = 0
+    Top = 362
+    Width = 957
+    Height = 193
+    ActivePage = TSBrandUpdate
+    Align = alBottom
     TabOrder = 1
-    object Label1: TLabel
-      Left = 16
-      Top = 16
-      Width = 106
-      Height = 15
-      Caption = 'Ajouter une marque'
-    end
-    object Label2: TLabel
-      Left = 16
-      Top = 72
-      Width = 36
-      Height = 15
-      Caption = 'Nom : '
-    end
-    object EBrandName: TEdit
-      Left = 72
-      Top = 69
-      Width = 185
-      Height = 23
-      TabOrder = 0
-    end
-    object AddBrandBtn: TButton
-      Left = 104
-      Top = 112
-      Width = 75
-      Height = 25
+    ExplicitLeft = 382
+    ExplicitTop = 399
+    ExplicitWidth = 289
+    object TSBrandAdd: TTabSheet
       Caption = 'Ajouter'
-      TabOrder = 1
-      OnClick = AddBrandBtnClick
+      object Label1: TLabel
+        Left = 16
+        Top = 16
+        Width = 106
+        Height = 15
+        Caption = 'Ajouter une marque'
+      end
+      object Label2: TLabel
+        Left = 17
+        Top = 48
+        Width = 36
+        Height = 15
+        Caption = 'Nom : '
+      end
+      object AddBrandBtn: TButton
+        Left = 105
+        Top = 88
+        Width = 75
+        Height = 25
+        Caption = 'Ajouter'
+        TabOrder = 0
+        OnClick = AddBrandBtnClick
+      end
+      object EBrandName: TEdit
+        Left = 73
+        Top = 45
+        Width = 185
+        Height = 23
+        TabOrder = 1
+      end
+    end
+    object TSBrandUpdate: TTabSheet
+      Caption = 'Modifier'
+      ImageIndex = 1
+      object Label4: TLabel
+        Left = 16
+        Top = 36
+        Width = 82
+        Height = 15
+        Caption = 'Nouveau nom :'
+      end
+      object Label5: TLabel
+        Left = 16
+        Top = 11
+        Width = 103
+        Height = 15
+        Caption = 'Modifier une valeur'
+      end
+      object BUpdateBrandName: TButton
+        Left = 112
+        Top = 72
+        Width = 75
+        Height = 25
+        Caption = 'Modifier'
+        TabOrder = 0
+        OnClick = BUpdateBrandNameClick
+      end
+      object EBrandUpdateName: TEdit
+        Left = 97
+        Top = 32
+        Width = 184
+        Height = 23
+        TabOrder = 1
+      end
     end
   end
   object DSBrand: TDataSource
     DataSet = DMDatabase.FDTableBrand
     Left = 56
     Top = 320
+  end
+  object PUMBrand: TPopupMenu
+    Left = 536
+    Top = 232
+    object Supprimer1: TMenuItem
+      Action = RemoveBrand
+    end
+  end
+  object ALBrand: TActionList
+    Left = 376
+    Top = 296
+    object RemoveBrand: TAction
+      Caption = 'Supprimer'
+      OnExecute = RemoveBrandExecute
+    end
   end
 end
