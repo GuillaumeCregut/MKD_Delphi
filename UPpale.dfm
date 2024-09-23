@@ -35,6 +35,7 @@ object FPpale: TFPpale
       end
       object Pays2: TMenuItem
         Caption = 'P'#233'riodes'
+        OnClick = Pays2Click
       end
       object Catgories1: TMenuItem
         Caption = 'Cat'#233'gories'

@@ -18,6 +18,7 @@ type
     Transaction: TFDTransaction;
     FDTableCountry: TFDTable;
     FDTableCategory: TFDTable;
+    FDTablePeriod: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
   private

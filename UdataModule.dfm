@@ -52,4 +52,13 @@ object DMDatabase: TDMDatabase
     Left = 96
     Top = 288
   end
+  object FDTablePeriod: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'period'
+    Left = 384
+    Top = 240
+  end
 end

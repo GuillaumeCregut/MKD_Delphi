@@ -31,6 +31,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure BCategoryAddClick(Sender: TObject);
     procedure BCategoryUpdateClick(Sender: TObject);
+    procedure DBGCategoryCellClick(Column: TColumn);
   private
     { Déclarations privées }
     oldName: string;
@@ -96,6 +97,11 @@ begin
   end;
   DMDatabase.FDTableCategory.Refresh;
 
+end;
+
+procedure TFCategory.DBGCategoryCellClick(Column: TColumn);
+begin
+refreshValues;
 end;
 
 procedure TFCategory.FormShow(Sender: TObject);

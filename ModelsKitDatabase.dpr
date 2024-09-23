@@ -8,7 +8,8 @@ uses
   UdataModule in 'UdataModule.pas' {DMDatabase: TDataModule},
   UBrand in 'UBrand.pas' {FBrand},
   UCountry in 'UCountry.pas' {FCountry},
-  UCategory in 'UCategory.pas' {FCategory};
+  UCategory in 'UCategory.pas' {FCategory},
+  UPeriod in 'UPeriod.pas' {FPeriod};
 
 {$R *.res}
 
@@ -20,5 +21,6 @@ begin
   Application.CreateForm(TFBrand, FBrand);
   Application.CreateForm(TFCountry, FCountry);
   Application.CreateForm(TFCategory, FCategory);
+  Application.CreateForm(TFPeriod, FPeriod);
   Application.Run;
 end.

@@ -5,3 +5,4 @@ win32/*
 *.identcache
 *.dsk
 *.dsv
+*~dsk
