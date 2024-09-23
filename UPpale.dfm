@@ -27,6 +27,16 @@ object FPpale: TFPpale
   object MainMenu1: TMainMenu
     Left = 552
     Top = 8
+    object Systme1: TMenuItem
+      Caption = 'Syst'#232'me'
+      object Exporterlabase1: TMenuItem
+        Caption = 'Exporter la base'
+      end
+      object Quitter1: TMenuItem
+        Caption = '&Quitter'
+        OnClick = Quitter1Click
+      end
+    end
     object Bonjour1: TMenuItem
       Caption = 'Param'#232'tres'
       object Pays1: TMenuItem
@@ -43,6 +53,7 @@ object FPpale: TFPpale
       end
       object Catgories2: TMenuItem
         Caption = 'Echelles'
+        OnClick = Catgories2Click
       end
       object Constructeurs1: TMenuItem
         Caption = 'Constructeurs'
@@ -89,12 +100,6 @@ object FPpale: TFPpale
       end
       object Choisirunkit2: TMenuItem
         Caption = 'Kits termin'#233's'
-      end
-    end
-    object Systme1: TMenuItem
-      Caption = 'Syst'#232'me'
-      object Exporterlabase1: TMenuItem
-        Caption = 'Exporter la base'
       end
     end
   end
