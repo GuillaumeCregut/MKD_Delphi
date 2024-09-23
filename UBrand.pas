@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  System.Classes, Vcl.Graphics, System.UITypes,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UdataModule, Data.DB, Vcl.Grids,
   Vcl.DBGrids, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls,
   System.Actions, Vcl.ActnList, Vcl.Menus, Vcl.ComCtrls;
@@ -35,7 +35,6 @@ type
     procedure RemoveBrandExecute(Sender: TObject);
   private
     { Déclarations privées }
-    counter: integer;
     oldName: string;
     procedure refreshValues;
   public

@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Menus, Vcl.ComCtrls, System.IniFiles, FireDAC.Comp.Client, Vcl.StdCtrls,
-  UBrand, UCountry;
+  UBrand, UCountry, UCategory;
 
 type
   TFPpale = class(TForm)
@@ -39,9 +39,9 @@ type
     procedure FormCreate(Sender: TObject);
     procedure Marques1Click(Sender: TObject);
     procedure Pays1Click(Sender: TObject);
+    procedure Catgories1Click(Sender: TObject);
   private
     { Déclarations privées }
-    tempo: TFDConnection;
     isSetup: boolean;
     procedure saveIniFile(dbPath: string);
     procedure initDatabase(path: string);
@@ -115,6 +115,11 @@ begin
   finally
     settingsFile.Free;
   end;
+end;
+
+procedure TFPpale.Catgories1Click(Sender: TObject);
+begin
+    FCategory.ShowModal;
 end;
 
 procedure TFPpale.FormCreate(Sender: TObject);

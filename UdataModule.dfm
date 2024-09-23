@@ -43,4 +43,13 @@ object DMDatabase: TDMDatabase
     Left = 240
     Top = 72
   end
+  object FDTableCategory: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'category'
+    Left = 96
+    Top = 288
+  end
 end

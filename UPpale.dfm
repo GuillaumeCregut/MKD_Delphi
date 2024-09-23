@@ -38,6 +38,7 @@ object FPpale: TFPpale
       end
       object Catgories1: TMenuItem
         Caption = 'Cat'#233'gories'
+        OnClick = Catgories1Click
       end
       object Catgories2: TMenuItem
         Caption = 'Echelles'

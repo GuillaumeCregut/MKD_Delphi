@@ -3,3 +3,5 @@ __history/*
 *.dproj.local
 win32/*
 *.identcache
+*.dsk
+*.dsv
