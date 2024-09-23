@@ -34,4 +34,13 @@ object DMDatabase: TDMDatabase
     Left = 344
     Top = 144
   end
+  object FDTableCountry: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'country'
+    Left = 240
+    Top = 72
+  end
 end

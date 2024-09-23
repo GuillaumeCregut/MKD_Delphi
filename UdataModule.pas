@@ -16,6 +16,7 @@ type
     dbConnection: TFDConnection;
     SystemQuery: TFDQuery;
     Transaction: TFDTransaction;
+    FDTableCountry: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
   private
