@@ -19,6 +19,7 @@ object DMDatabase: TDMDatabase
       'DriverID=SQLite')
     Connected = True
     LoginPrompt = False
+    OnError = dbConnectionError
     Left = 184
     Top = 160
   end
