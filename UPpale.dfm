@@ -31,6 +31,7 @@ object FPpale: TFPpale
       Caption = 'Param'#232'tres'
       object Pays1: TMenuItem
         Caption = 'Pays'
+        OnClick = Pays1Click
       end
       object Pays2: TMenuItem
         Caption = 'P'#233'riodes'
