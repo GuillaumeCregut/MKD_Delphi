@@ -154,6 +154,10 @@
             <Form>FScale</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UBuilder.pas">
+            <Form>FBuilder</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>

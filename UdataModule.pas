@@ -20,6 +20,7 @@ type
     FDTableCategory: TFDTable;
     FDTablePeriod: TFDTable;
     FDTableScale: TFDTable;
+    FDTableBuilder: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
   private
