@@ -10,7 +10,8 @@ uses
   UCountry in 'UCountry.pas' {FCountry},
   UCategory in 'UCategory.pas' {FCategory},
   UPeriod in 'UPeriod.pas' {FPeriod},
-  UScale in 'UScale.pas' {FScale};
+  UScale in 'UScale.pas' {FScale},
+  UBuilder in 'UBuilder.pas' {FBuilder};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(TFCategory, FCategory);
   Application.CreateForm(TFPeriod, FPeriod);
   Application.CreateForm(TFScale, FScale);
+  Application.CreateForm(TFBuilder, FBuilder);
   Application.Run;
 end.
