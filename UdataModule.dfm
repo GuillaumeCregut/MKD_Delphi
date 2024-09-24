@@ -70,4 +70,13 @@ object DMDatabase: TDMDatabase
     Left = 336
     Top = 368
   end
+  object FDTableBuilder: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'builders'
+    Left = 304
+    Top = 224
+  end
 end
