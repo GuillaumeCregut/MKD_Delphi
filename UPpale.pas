@@ -7,7 +7,7 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Menus, Vcl.ComCtrls, System.IniFiles, FireDAC.Comp.Client, Vcl.StdCtrls,
-  UBrand, UCountry, UCategory, UPeriod, UScale;
+  UBrand, UCountry, UCategory, UPeriod, UScale, UBuilder;
 
 type
   TFPpale = class(TForm)
@@ -44,6 +44,7 @@ type
     procedure Pays2Click(Sender: TObject);
     procedure Catgories2Click(Sender: TObject);
     procedure Quitter1Click(Sender: TObject);
+    procedure Constructeurs1Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -139,6 +140,11 @@ end;
 procedure TFPpale.Catgories2Click(Sender: TObject);
 begin
   FScale.ShowModal;
+end;
+
+procedure TFPpale.Constructeurs1Click(Sender: TObject);
+begin
+  FBuilder.ShowModal;
 end;
 
 procedure TFPpale.FormCreate(Sender: TObject);

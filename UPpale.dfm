@@ -57,6 +57,7 @@ object FPpale: TFPpale
       end
       object Constructeurs1: TMenuItem
         Caption = 'Constructeurs'
+        OnClick = Constructeurs1Click
       end
       object Marques1: TMenuItem
         Caption = 'Marques'
