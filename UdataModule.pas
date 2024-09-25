@@ -21,8 +21,10 @@ type
     FDTablePeriod: TFDTable;
     FDTableScale: TFDTable;
     FDTableBuilder: TFDTable;
+    FDTableModel: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
+    procedure dbConnectionAfterConnect(Sender: TObject);
   private
     { Déclarations privées }
   public
@@ -42,10 +44,21 @@ implementation
 
 
 
+procedure TDMDatabase.dbConnectionAfterConnect(Sender: TObject);
+begin
+  FDTableBrand.Active:=true;
+  FDTableBuilder.Active:=true;
+  FDTableCategory.Active:=true;
+  FDTableCountry.Active:=true;
+  FDTableModel.Active:=true;
+  FDTablePeriod.Active:=true;
+  FDTableScale.Active:=true;
+end;
+
 procedure TDMDatabase.dbConnectionError(ASender, AInitiator: TObject;
   var AException: Exception);
 begin
-    raise Exception.Create('Erreur dans la base');
+   // raise Exception.Create('Erreur dans la base');
 end;
 
 end.

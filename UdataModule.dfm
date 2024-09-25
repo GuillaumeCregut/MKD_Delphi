@@ -2,7 +2,6 @@ object DMDatabase: TDMDatabase
   Height = 480
   Width = 640
   object FDTableBrand: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -20,6 +19,7 @@ object DMDatabase: TDMDatabase
     Connected = True
     LoginPrompt = False
     OnError = dbConnectionError
+    AfterConnect = dbConnectionAfterConnect
     Left = 184
     Top = 160
   end
@@ -35,7 +35,6 @@ object DMDatabase: TDMDatabase
     Top = 144
   end
   object FDTableCountry: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -44,7 +43,6 @@ object DMDatabase: TDMDatabase
     Top = 72
   end
   object FDTableCategory: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -53,7 +51,6 @@ object DMDatabase: TDMDatabase
     Top = 288
   end
   object FDTablePeriod: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -62,7 +59,6 @@ object DMDatabase: TDMDatabase
     Top = 240
   end
   object FDTableScale: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -78,5 +74,11 @@ object DMDatabase: TDMDatabase
     TableName = 'builders'
     Left = 304
     Top = 224
+  end
+  object FDTableModel: TFDTable
+    Connection = dbConnection
+    TableName = 'model'
+    Left = 472
+    Top = 352
   end
 end
