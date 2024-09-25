@@ -65,6 +65,7 @@ object FPpale: TFPpale
       end
       object Marques2: TMenuItem
         Caption = 'Mod'#232'les'
+        OnClick = Marques2Click
       end
     end
     object Profil1: TMenuItem
