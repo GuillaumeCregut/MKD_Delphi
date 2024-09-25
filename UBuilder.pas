@@ -100,13 +100,16 @@ end;
 
 procedure TFBuilder.BBuilderUpdateClick(Sender: TObject);
 var
-  name: String;
-  idNewCountry: Integer;
+  name, query: String;
+  idNewCountry, id: Integer;
 begin
   name := EBuilderUpdateName.Text;
+  id:=DSBuilder.DataSet.FieldByName('id').AsInteger;
   idNewCountry := DBLCBBuilderUpdateCountry.ListSource.DataSet.FieldByName('id')
     .AsInteger;
-  showMessage(IntToStr(idNewCountry));
+  query:= 'UPDATE builders SET name=:name, country=:country WHERE id=:id;';
+  DMDatabase.dbConnection.ExecSQL(query,[name,idNewCountry,id]);
+  reloadValues;
 end;
 
 procedure TFBuilder.DBGBuilderCellClick(Column: TColumn);
