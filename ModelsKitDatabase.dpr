@@ -11,7 +11,8 @@ uses
   UCategory in 'UCategory.pas' {FCategory},
   UPeriod in 'UPeriod.pas' {FPeriod},
   UScale in 'UScale.pas' {FScale},
-  UBuilder in 'UBuilder.pas' {FBuilder};
+  UBuilder in 'UBuilder.pas' {FBuilder},
+  Umodel in 'Umodel.pas' {FModel};
 
 {$R *.res}
 
@@ -26,5 +27,6 @@ begin
   Application.CreateForm(TFPeriod, FPeriod);
   Application.CreateForm(TFScale, FScale);
   Application.CreateForm(TFBuilder, FBuilder);
+  Application.CreateForm(TFModel, FModel);
   Application.Run;
 end.
