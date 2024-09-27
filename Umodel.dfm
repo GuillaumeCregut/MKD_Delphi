@@ -80,7 +80,7 @@ object FModel: TFModel
     Top = 362
     Width = 957
     Height = 193
-    ActivePage = TSModelUpdate
+    ActivePage = TSModelAdd
     Align = alBottom
     TabOrder = 1
     object TSModelAdd: TTabSheet
@@ -93,77 +93,80 @@ object FModel: TFModel
         Caption = 'Ajouter un mod'#232'le'
       end
       object Label2: TLabel
-        Left = 16
+        Left = 3
         Top = 24
         Width = 36
         Height = 15
         Caption = 'Nom : '
       end
       object Label3: TLabel
-        Left = 16
+        Left = 3
         Top = 64
         Width = 58
         Height = 15
         Caption = 'R'#233'f'#233'rence :'
       end
       object Label4: TLabel
-        Left = 16
-        Top = 104
+        Left = 3
+        Top = 93
         Width = 89
         Height = 15
         Caption = 'Lien scalemates :'
       end
-      object Label5: TLabel
-        Left = 16
-        Top = 145
-        Width = 39
-        Height = 15
-        Caption = 'Image :'
-      end
       object Label6: TLabel
-        Left = 400
-        Top = 24
+        Left = 384
+        Top = 16
         Width = 43
         Height = 15
         Caption = 'Echelle :'
       end
       object Label7: TLabel
-        Left = 400
-        Top = 67
+        Left = 384
+        Top = 59
         Width = 47
         Height = 15
         Caption = 'Marque :'
       end
       object Label8: TLabel
-        Left = 400
-        Top = 107
+        Left = 384
+        Top = 99
         Width = 75
         Height = 15
         Caption = 'Constructeur :'
       end
       object Label9: TLabel
-        Left = 696
-        Top = 32
+        Left = 385
+        Top = 136
         Width = 46
         Height = 15
         Caption = 'P'#233'riode :'
       end
       object Label10: TLabel
-        Left = 696
-        Top = 65
+        Left = 664
+        Top = 17
         Width = 60
         Height = 15
         Caption = 'Cat'#233'gorie : '
       end
+      object IModelNewImage: TImage
+        Left = 664
+        Top = 45
+        Width = 105
+        Height = 105
+        Cursor = crHandPoint
+        Proportional = True
+        Stretch = True
+        OnClick = IModelUpdateImageClick
+      end
       object EModelName: TEdit
-        Left = 80
+        Left = 45
         Top = 24
         Width = 121
         Height = 23
         TabOrder = 0
       end
       object EModelRef: TEdit
-        Left = 80
+        Left = 67
         Top = 64
         Width = 121
         Height = 23
@@ -176,103 +179,95 @@ object FModel: TFModel
         Height = 23
         TabOrder = 2
       end
-      object TempoPicture: TEdit
-        Left = 61
-        Top = 137
-        Width = 121
-        Height = 23
-        TabOrder = 3
-        Text = 'Picture'
-      end
       object BModelAdd: TButton
-        Left = 784
-        Top = 120
+        Left = 847
+        Top = 112
         Width = 75
         Height = 25
         Caption = 'Ajouter'
-        TabOrder = 4
+        TabOrder = 3
         OnClick = BModelAddClick
       end
       object DBLCBModelScale: TDBLookupComboBox
-        Left = 449
-        Top = 24
+        Left = 456
+        Top = 16
         Width = 145
         Height = 23
         KeyField = 'name'
         ListSource = DSModelScale
-        TabOrder = 5
+        TabOrder = 4
       end
       object DBLCBModelBrand: TDBLookupComboBox
         Left = 456
-        Top = 64
+        Top = 56
         Width = 145
         Height = 23
         KeyField = 'name'
         ListSource = DSModelBrand
-        TabOrder = 6
+        TabOrder = 5
       end
       object DBLCBModelPeriod: TDBLookupComboBox
-        Left = 748
-        Top = 26
+        Left = 456
+        Top = 137
         Width = 145
         Height = 23
         KeyField = 'name'
         ListSource = DSModelPeriod
-        TabOrder = 7
+        TabOrder = 6
       end
       object DBLCBModelBuilder: TDBLookupComboBox
         Left = 481
-        Top = 104
+        Top = 96
         Width = 145
         Height = 23
         KeyField = 'name'
         ListSource = DSModelBuilder
-        TabOrder = 8
+        TabOrder = 7
       end
       object DBLCBModelCategory: TDBLookupComboBox
-        Left = 762
-        Top = 64
+        Left = 738
+        Top = 16
         Width = 145
         Height = 23
         KeyField = 'name'
         ListSource = DSModelCategory
-        TabOrder = 9
+        TabOrder = 8
       end
     end
     object TSModelUpdate: TTabSheet
       Caption = 'Modifier'
       ImageIndex = 1
       object Label11: TLabel
-        Left = 408
-        Top = 32
+        Left = 264
+        Top = 24
         Width = 43
         Height = 15
         Caption = 'Echelle :'
       end
       object Label12: TLabel
-        Left = 408
-        Top = 75
+        Left = 264
+        Top = 67
         Width = 47
         Height = 15
         Caption = 'Marque :'
       end
       object Label13: TLabel
-        Left = 408
-        Top = 115
+        Left = 264
+        Top = 107
         Width = 75
         Height = 15
         Caption = 'Constructeur :'
       end
       object Label14: TLabel
-        Left = 704
-        Top = 40
+        Left = 488
+        Top = 32
         Width = 46
         Height = 15
         Caption = 'P'#233'riode :'
       end
       object Label15: TLabel
-        Left = 704
-        Top = 73
+        Left = 488
+        Top = 65
         Width = 60
         Height = 15
         Caption = 'Cat'#233'gorie : '
@@ -295,7 +290,7 @@ object FModel: TFModel
         Left = 3
         Top = 88
         Width = 94
-        Height = 25
+        Height = 15
         Caption = 'Liens scalemates :'
       end
       object Label19: TLabel
@@ -312,9 +307,19 @@ object FModel: TFModel
         Height = 15
         Caption = 'Modifier un mod'#232'le'
       end
+      object IModelUpdateImage: TImage
+        Left = 776
+        Top = 9
+        Width = 105
+        Height = 105
+        Cursor = crHandPoint
+        Proportional = True
+        Stretch = True
+        OnClick = IModelUpdateImageClick
+      end
       object DBLCBModelNewScale: TDBLookupComboBox
-        Left = 457
-        Top = 32
+        Left = 313
+        Top = 24
         Width = 145
         Height = 23
         DataField = 'scale'
@@ -325,8 +330,8 @@ object FModel: TFModel
         TabOrder = 0
       end
       object DBLCBModelNewBrand: TDBLookupComboBox
-        Left = 461
-        Top = 72
+        Left = 317
+        Top = 64
         Width = 145
         Height = 23
         DataField = 'brand'
@@ -337,8 +342,8 @@ object FModel: TFModel
         TabOrder = 1
       end
       object DBLCBModelNewPeriod: TDBLookupComboBox
-        Left = 756
-        Top = 34
+        Left = 540
+        Top = 26
         Width = 145
         Height = 23
         DataField = 'period'
@@ -349,8 +354,8 @@ object FModel: TFModel
         TabOrder = 2
       end
       object DBLCBModelNewCategory: TDBLookupComboBox
-        Left = 770
-        Top = 72
+        Left = 554
+        Top = 64
         Width = 145
         Height = 23
         DataField = 'category'
@@ -397,8 +402,8 @@ object FModel: TFModel
         TabOrder = 7
       end
       object DBLCBModelNewBuilder: TDBLookupComboBox
-        Left = 489
-        Top = 112
+        Left = 345
+        Top = 104
         Width = 145
         Height = 23
         DataField = 'builder'
@@ -409,7 +414,7 @@ object FModel: TFModel
         TabOrder = 8
       end
       object BModelUpdate: TButton
-        Left = 776
+        Left = 584
         Top = 120
         Width = 75
         Height = 25
@@ -486,5 +491,9 @@ object FModel: TFModel
     DataSet = DMDatabase.FDTableCategory
     Left = 792
     Top = 208
+  end
+  object OPDModel: TOpenPictureDialog
+    Left = 84
+    Top = 236
   end
 end

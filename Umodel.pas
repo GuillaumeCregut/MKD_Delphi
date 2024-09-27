@@ -11,7 +11,7 @@ uses
   FireDAC.Phys.Intf, FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.ComCtrls, Vcl.Grids,
   Vcl.DBGrids, System.Actions, Vcl.ActnList, Vcl.DBCtrls, Vcl.StdCtrls,
-  Vcl.Menus, Vcl.Mask, Vcl.ExtCtrls;
+  Vcl.Menus, Vcl.Mask, Vcl.ExtCtrls, UModelDetail, Vcl.ExtDlgs;
 
 type
   TFModel = class(TForm)
@@ -29,11 +29,9 @@ type
     EModelName: TEdit;
     EModelRef: TEdit;
     EModelScalemates: TEdit;
-    TempoPicture: TEdit;
     Label2: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
     Label8: TLabel;
@@ -72,15 +70,23 @@ type
     BModelUpdate: TButton;
     AModelShowDetails: TAction;
     Voirlesdtails1: TMenuItem;
+    OPDModel: TOpenPictureDialog;
+    IModelUpdateImage: TImage;
+    IModelNewImage: TImage;
     procedure AModelDeleteExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure DBGModelCellClick(Column: TColumn);
     procedure BModelAddClick(Sender: TObject);
     procedure AModelShowDetailsExecute(Sender: TObject);
     procedure BModelUpdateClick(Sender: TObject);
+    procedure DBGModelCellClick(Column: TColumn);
+    procedure IModelUpdateImageClick(Sender: TObject);
+    procedure SavePicture(src: string; dest: string);
   private
     { Déclarations privées }
+    newPicturePath : string;
     procedure reloadValues;
+    procedure getPicture(name: string='');
+    procedure resetNewPicture();
   public
     { Déclarations publiques }
   end;
@@ -91,6 +97,8 @@ var
 implementation
 
 {$R *.dfm}
+uses
+ Vcl.Imaging.pngimage,Vcl.Imaging.jpeg, System.IOUtils;
 
 procedure TFModel.AModelDeleteExecute(Sender: TObject);
 var
@@ -105,7 +113,8 @@ end;
 
 procedure TFModel.AModelShowDetailsExecute(Sender: TObject);
 begin
-//
+  FModelDetail.idModel:=DSModel.DataSet.FieldByName('id').AsInteger;
+  FmodelDetail.ShowModal;
 end;
 
 procedure TFModel.BModelAddClick(Sender: TObject);
@@ -116,7 +125,8 @@ begin
   newName := EModelName.Text;
   newRef := EModelRef.Text;
   newScaleMates := EModelScalemates.Text;
-  NewPicture := TempoPicture.Text;
+  //TODO : set newPicture
+  NewPicture := '';
   if (newName.Length = 0) or (newRef.Length < 0) then
   begin
     showMessage('Veuillez saisir le nom et la référence');
@@ -151,14 +161,24 @@ end;
 
 procedure TFModel.BModelUpdateClick(Sender: TObject);
 var
-  newName, newRef, NewPicture, newScaleMates, query: string;
+  newName, newRef, NewPicture, newScaleMates, query, oldPicture: string;
   newScale, newPeriod, newCategory, newBrand, newBuilder, idModel: Integer;
 begin
-    newName := DBEModelNewName.Text;
-  newRef := DBEModelNewRef.Text;
-  newScaleMates := DBEModelScalemates.Text;
-  NewPicture := DBEdit4.Text;
   IdModel:=DSModel.DataSet.FieldByName('id').AsInteger;
+  newName := DBEModelNewName.Text;
+  newRef := DBEModelNewRef.Text;
+  oldPicture:= DSModel.DataSet.FieldByName('picture').AsString;
+  newScaleMates := DBEModelScalemates.Text;
+  if(oldPicture='') AND (newPicturePath<>'') then
+  begin
+     //create new name
+     newPicture:=IntToStr(Idmodel)+'_'+newName+intToStr(Random(100))+'.png';
+  end
+  else
+  begin
+     NewPicture := oldPicture;
+  end;
+
   if (newName.Length = 0) or (newRef.Length < 0) then
   begin
     showMessage('Veuillez saisir le nom et la référence');
@@ -193,16 +213,23 @@ begin
    newPeriod,
    newScale,
    IdModel]);
+   SavePicture(newPicturePath,newPicture);
+   newPicturePath:='';
    reloadValues;
 end;
 
 procedure TFModel.DBGModelCellClick(Column: TColumn);
+var
+  picture: string;
 begin
-  //
+   picture:=DSModel.DataSet.FieldByName('picture').AsString;
+   getPicture(picture);
 end;
 
 procedure TFModel.FormShow(Sender: TObject);
 begin
+  resetNewPicture;
+  IModelUpdateImage.Picture:=nil;
   DMDatabase.FDTableBrand.Active := true;
   DMDatabase.FDTableBuilder.Active := true;
   DMDatabase.FDTableCategory.Active := true;
@@ -214,8 +241,55 @@ begin
   begin
     FDQModel.Active := true;
     DBGModel.DataSource.DataSet.First;
-    DBGModelCellClick(nil);
   end;
+end;
+
+procedure TFModel.getPicture(name: string);
+var
+  picturePath: string;
+  RS: TResourceStream;
+  Image: TPngImage;
+  isPictureOK : boolean;
+begin
+  isPictureOK:= false;
+  if not (name='') then
+  begin
+    picturePath := TPath.Combine(ExtractFileDir(Application.ExeName),'pictures',name);
+    isPictureOk:=FileExists(picturePath);
+  end;
+
+  if isPictureOK then
+  begin
+       IModelUpdateImage.Picture.LoadFromFile(picturePath);
+  end
+  else
+  begin
+     Image := TPngImage.Create;
+    try
+      RS := TResourceStream.Create(hInstance, 'No_image', RT_RCDATA);
+      try
+        Image.LoadFromStream(RS);
+        IModelUpdateImage.picture.Graphic := Image
+      finally
+        RS.Free;
+      end;
+    finally
+      Image.Free;
+    end;
+  end;
+end;
+
+procedure TFModel.IModelUpdateImageClick(Sender: TObject);
+var
+  path : string;
+begin
+  if OPDModel.Execute() then
+  begin
+    path:=OPDModel.FileName;
+    newPicturePath:=path;
+    IModelUpdateImage.Picture.LoadFromFile(path);
+  end;
+
 end;
 
 procedure TFModel.reloadValues;
@@ -223,6 +297,60 @@ begin
   if FDQModel.Active then
     FDQModel.Active := false;
   FDQModel.Active:=true;
+  newPicturePath:='';
 end;
+
+procedure TFModel.resetNewPicture;
+var
+  RS: TResourceStream;
+  Image: TPngImage;
+begin
+  Image := TPngImage.Create;
+    try
+      RS := TResourceStream.Create(hInstance, 'No_image', RT_RCDATA);
+      try
+        Image.LoadFromStream(RS);
+        IModelNewImage.picture.Graphic := Image
+      finally
+        RS.Free;
+      end;
+    finally
+      Image.Free;
+    end;
+end;
+
+procedure TFModel.SavePicture(src, dest: string);
+// TODO: Faire en sorte d'utiliser les 2 Images
+
+var
+  ext, destPath: string;
+  MyBMPImage : TBitmap;
+  MyPngImage : TPngImage;
+  ratio : single;
+  newHeight : integer;
+begin
+   ext := TPath.GetExtension(src);
+   destPath:=TPath.Combine(ExtractFileDir(Application.ExeName),'pictures')+TPath.DirectorySeparatorChar;
+   //IModelUpdateImage.Picture.SaveToFile(destPath+dest);
+   MyBMPImage:=TBitmap.Create;
+   try
+     MyBMPImage.Assign(IModelUpdateImage.Picture.Graphic);
+     ratio:=MyBMPImage.Width/320;
+     newHeight:=round(MyBMPImage.Height/ratio);
+     MyPngImage:=TPngImage.Create;
+     try
+        MyPngImage.Assign(MyBMPImage);
+         MyPngImage.Canvas.StretchDraw(Rect(0,0,320,newHeight),MyPngImage );
+         MyPngImage.Resize(320,newHeight);
+        MyPngImage.SaveToFile(destPath+dest);
+     finally
+        MyPngImage.Free;
+     end;
+   finally
+     MyBMPImage.free;
+   end;
+end;
+
+
 
 end.
