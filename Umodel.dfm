@@ -425,15 +425,6 @@ object FModel: TFModel
       end
     end
   end
-  object Button1: TButton
-    Left = 360
-    Top = 96
-    Width = 75
-    Height = 25
-    Caption = 'Button1'
-    TabOrder = 2
-    OnClick = Button1Click
-  end
   object DSModel: TDataSource
     DataSet = FDQModel
     Left = 376

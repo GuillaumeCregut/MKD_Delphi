@@ -73,7 +73,6 @@ type
     OPDModel: TOpenPictureDialog;
     IModelUpdateImage: TImage;
     IModelNewImage: TImage;
-    Button1: TButton;
     procedure AModelDeleteExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BModelAddClick(Sender: TObject);
@@ -84,7 +83,6 @@ type
     procedure SavePicture(src: string; dest: string; image: TImage);
     procedure IModelNewImageClick(Sender: TObject);
     procedure TSModelAddShow(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     { Déclarations privées }
     newPicturePath : string;
@@ -241,14 +239,6 @@ begin
    SavePicture(newPicturePath,newPicture,IModelUpdateImage);
    newPicturePath:='';
    reloadValues;
-end;
-
-procedure TFModel.Button1Click(Sender: TObject);
-var
-  toto : string;
-begin
- toto:=EModelName.Text;
-
 end;
 
 function TFModel.createPictureName(name: string; id: integer): string;
