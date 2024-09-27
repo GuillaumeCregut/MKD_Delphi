@@ -73,6 +73,7 @@ type
     OPDModel: TOpenPictureDialog;
     IModelUpdateImage: TImage;
     IModelNewImage: TImage;
+    Button1: TButton;
     procedure AModelDeleteExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BModelAddClick(Sender: TObject);
@@ -83,6 +84,7 @@ type
     procedure SavePicture(src: string; dest: string; image: TImage);
     procedure IModelNewImageClick(Sender: TObject);
     procedure TSModelAddShow(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
   private
     { Déclarations privées }
     newPicturePath : string;
@@ -101,7 +103,7 @@ implementation
 
 {$R *.dfm}
 uses
- Vcl.Imaging.pngimage,Vcl.Imaging.jpeg, System.IOUtils;
+ Vcl.Imaging.pngimage,Vcl.Imaging.jpeg, System.IOUtils, RegularExpressions;
 
 procedure TFModel.AModelDeleteExecute(Sender: TObject);
 var
@@ -241,11 +243,35 @@ begin
    reloadValues;
 end;
 
+procedure TFModel.Button1Click(Sender: TObject);
+var
+  toto : string;
+begin
+ toto:=EModelName.Text;
+
+end;
+
 function TFModel.createPictureName(name: string; id: integer): string;
 var
   namePicture : string;
 begin
-// TODO : remove space and specail char
+    namePicture:= StringReplace(name,' ','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'/','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'''','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'&','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'(','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,')','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'.','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'+','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'*','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'"','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'=','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,',','',[rfReplaceAll]);
+    namePicture:= StringReplace(namePicture,'\','',[rfReplaceAll]);
+    if(namePicture.Length>20) then
+    begin
+       namePicture:= Copy(namePicture,0,20);
+    end;
     namePicture:=IntToStr(id)+'_'+name+intToStr(Random(100))+'.png';
     result:=namePicture;
 end;
