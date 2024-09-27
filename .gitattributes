@@ -3,3 +3,4 @@
 *.dpr text eol=crlf
 *.dproj text eol=crlf
 *.dproj.local text eol=crlf
+*.rc text eol=crlf

@@ -12,7 +12,8 @@ uses
   UPeriod in 'UPeriod.pas' {FPeriod},
   UScale in 'UScale.pas' {FScale},
   UBuilder in 'UBuilder.pas' {FBuilder},
-  Umodel in 'Umodel.pas' {FModel};
+  Umodel in 'Umodel.pas' {FModel},
+  UModelDetail in 'UModelDetail.pas' {FModelDetail};
 
 {$R *.res}
 
@@ -28,5 +29,6 @@ begin
   Application.CreateForm(TFScale, FScale);
   Application.CreateForm(TFBuilder, FBuilder);
   Application.CreateForm(TFModel, FModel);
+  Application.CreateForm(TFModelDetail, FModelDetail);
   Application.Run;
 end.

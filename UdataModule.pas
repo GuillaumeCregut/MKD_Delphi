@@ -8,7 +8,9 @@ uses
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.VCLUI.Wait,
   Data.DB, FireDAC.Comp.Client, FireDAC.Phys.SQLite, FireDAC.Phys.SQLiteDef,
   FireDAC.Stan.ExprFuncs, FireDAC.Phys.SQLiteWrapper.Stat, FireDAC.Stan.Param,
-  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet;
+  FireDAC.DatS, FireDAC.DApt.Intf, FireDAC.DApt, FireDAC.Comp.DataSet,
+  Vcl.BaseImageCollection, Vcl.ImageCollection, System.ImageList, Vcl.ImgList,
+  Vcl.VirtualImageList;
 
 type
   TDMDatabase = class(TDataModule)
@@ -22,6 +24,8 @@ type
     FDTableScale: TFDTable;
     FDTableBuilder: TFDTable;
     FDTableModel: TFDTable;
+    VILMKD: TVirtualImageList;
+    ImageCollectionMKD: TImageCollection;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
     procedure dbConnectionAfterConnect(Sender: TObject);

@@ -162,10 +162,18 @@
             <Form>FModel</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UModelDetail.pas">
+            <Form>FModelDetail</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
             <ResourceId>Resource_1</ResourceId>
+        </RcItem>
+        <RcItem Include="nopicture.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>No_image</ResourceId>
         </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -200,6 +208,12 @@
                     </Platform>
                 </DeployFile>
                 <DeployFile LocalName="database.sql" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="nopicture.png" Configuration="Debug" Class="ProjectFile">
                     <Platform Name="Win32">
                         <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
