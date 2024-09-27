@@ -63,7 +63,7 @@ implementation
 
 {$R *.dfm}
 
-uses UdataModule;
+uses UdataModule, System.IOUtils;
 
 procedure TFPpale.initDatabase(path: string);
 var
@@ -158,6 +158,10 @@ var
   settingsFile: TIniFile;
   dataPath: string;
 begin
+  if(not DirectoryExists(TPath.Combine(ExtractFileDir(Application.ExeName),'pictures')))  then
+  begin
+    TDirectory.CreateDirectory(TPath.Combine(ExtractFileDir(Application.ExeName),'pictures'));
+  end;
   settingsFile := TIniFile.Create(ChangeFileExt(Application.ExeName, '.ini'));
   try
     isSetup := settingsFile.ReadBool('init', 'setup', false);
@@ -187,9 +191,7 @@ procedure TFPpale.startDB(dataPath: String);
 begin
   DMDatabase.dbConnection.Close;
   DMDatabase.dbConnection.Params.Database := dataPath;
-  DMDatabase.dbConnection.Connected := true;
-  DMDatabase.dbConnection.Open();
-
+  DMDatabase.dbConnection.Open;
 end;
 
 end.
