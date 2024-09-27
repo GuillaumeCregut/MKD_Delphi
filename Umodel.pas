@@ -80,13 +80,16 @@ type
     procedure BModelUpdateClick(Sender: TObject);
     procedure DBGModelCellClick(Column: TColumn);
     procedure IModelUpdateImageClick(Sender: TObject);
-    procedure SavePicture(src: string; dest: string);
+    procedure SavePicture(src: string; dest: string; image: TImage);
+    procedure IModelNewImageClick(Sender: TObject);
+    procedure TSModelAddShow(Sender: TObject);
   private
     { Déclarations privées }
     newPicturePath : string;
     procedure reloadValues;
     procedure getPicture(name: string='');
     procedure resetNewPicture();
+    function createPictureName(name:string; id: integer) : string;
   public
     { Déclarations publiques }
   end;
@@ -120,23 +123,29 @@ end;
 procedure TFModel.BModelAddClick(Sender: TObject);
 var
   newName, newRef, NewPicture, newScaleMates: string;
-  newScale, newPeriod, newCategory, newBrand, newBuilder: Integer;
+  newScale, newPeriod, newCategory, newBrand, newBuilder,lastInsertId: Integer;
 begin
   newName := EModelName.Text;
   newRef := EModelRef.Text;
   newScaleMates := EModelScalemates.Text;
-  //TODO : set newPicture
-  NewPicture := '';
   if (newName.Length = 0) or (newRef.Length < 0) then
   begin
     showMessage('Veuillez saisir le nom et la référence');
     exit;
   end;
+  DMDatabase.FDTableModel.Last;
+  lastInsertId:=  DMDatabase.FDTableModel.FieldByName('id').asInteger+1;
+  NewPicture := createPictureName(newName,lastInsertId);
   newScale := DSModelScale.DataSet.FieldByName('id').asInteger;
   newPeriod := DSModelPeriod.DataSet.FieldByName('id').asInteger;
   newCategory := DSModelCategory.DataSet.FieldByName('id').asInteger;
   newBrand := DSModelBrand.DataSet.FieldByName('id').asInteger;
   newBuilder := DSModelBuilder.DataSet.FieldByName('id').asInteger;
+  if(DBLCBModelBrand.Text='') OR(DBLCBModelPeriod.Text='') OR(DBLCBModelScale.Text='') OR (DBLCBModelCategory.Text='') OR (DBLCBModelBuilder.Text='') then
+  begin
+     showMessage('Veuillez indiquer toutes les informations');
+     exit;
+  end;
   DMDatabase.FDTableModel.Append;
   DMDatabase.FDTableModel.FieldByName('name').asString:= newName;
   DMDatabase.FDTableModel.FieldByName('reference').asString:=newRef;
@@ -150,6 +159,20 @@ begin
 
   try
       DMDatabase.FDTableModel.Post;
+      //Save Picture
+      try
+        if(OPDModel.FileName<>'') then
+        begin
+           SavePicture(OPDModel.FileName,NewPicture,IModelNewImage);
+        end;
+      except
+         showMessage('Une erreur est survenue lors de la création de l''image');
+      end;
+      EModelName.Text:='';
+      EModelRef.Text:='';
+      EModelScalemates.Text:='';
+      IModelNewImage.Picture:=nil;
+      OPDModel.FileName:='';
   except
       DMDatabase.FDTableModel.Cancel;
     showMessage('Le modèle saisi existe déjà');
@@ -172,7 +195,7 @@ begin
   if(oldPicture='') AND (newPicturePath<>'') then
   begin
      //create new name
-     newPicture:=IntToStr(Idmodel)+'_'+newName+intToStr(Random(100))+'.png';
+     newPicture:= createPictureName(newName,Idmodel);
   end
   else
   begin
@@ -213,9 +236,18 @@ begin
    newPeriod,
    newScale,
    IdModel]);
-   SavePicture(newPicturePath,newPicture);
+   SavePicture(newPicturePath,newPicture,IModelUpdateImage);
    newPicturePath:='';
    reloadValues;
+end;
+
+function TFModel.createPictureName(name: string; id: integer): string;
+var
+  namePicture : string;
+begin
+// TODO : remove space and specail char
+    namePicture:=IntToStr(id)+'_'+name+intToStr(Random(100))+'.png';
+    result:=namePicture;
 end;
 
 procedure TFModel.DBGModelCellClick(Column: TColumn);
@@ -279,6 +311,19 @@ begin
   end;
 end;
 
+procedure TFModel.IModelNewImageClick(Sender: TObject);
+var
+  path : string;
+begin
+  if OPDModel.Execute() then
+  begin
+    path:=OPDModel.FileName;
+    newPicturePath:=path;
+    IModelNewImage.Picture.LoadFromFile(path);
+  end;
+
+end;
+
 procedure TFModel.IModelUpdateImageClick(Sender: TObject);
 var
   path : string;
@@ -319,9 +364,7 @@ begin
     end;
 end;
 
-procedure TFModel.SavePicture(src, dest: string);
-// TODO: Faire en sorte d'utiliser les 2 Images
-
+procedure TFModel.SavePicture(src, dest: string; image: TImage);
 var
   ext, destPath: string;
   MyBMPImage : TBitmap;
@@ -334,7 +377,7 @@ begin
    //IModelUpdateImage.Picture.SaveToFile(destPath+dest);
    MyBMPImage:=TBitmap.Create;
    try
-     MyBMPImage.Assign(IModelUpdateImage.Picture.Graphic);
+     MyBMPImage.Assign(image.Picture.Graphic);
      ratio:=MyBMPImage.Width/320;
      newHeight:=round(MyBMPImage.Height/ratio);
      MyPngImage:=TPngImage.Create;
@@ -352,5 +395,10 @@ begin
 end;
 
 
+
+procedure TFModel.TSModelAddShow(Sender: TObject);
+begin
+  OPDModel.FileName:='';
+end;
 
 end.

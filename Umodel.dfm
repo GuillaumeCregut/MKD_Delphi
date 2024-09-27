@@ -85,6 +85,7 @@ object FModel: TFModel
     TabOrder = 1
     object TSModelAdd: TTabSheet
       Caption = 'Ajouter'
+      OnShow = TSModelAddShow
       object Label1: TLabel
         Left = 3
         Top = 3
@@ -156,7 +157,7 @@ object FModel: TFModel
         Cursor = crHandPoint
         Proportional = True
         Stretch = True
-        OnClick = IModelUpdateImageClick
+        OnClick = IModelNewImageClick
       end
       object EModelName: TEdit
         Left = 45
