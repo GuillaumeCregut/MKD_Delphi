@@ -166,6 +166,10 @@
             <Form>FModelDetail</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UStockGlobal.pas">
+            <Form>FStockGlobal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
