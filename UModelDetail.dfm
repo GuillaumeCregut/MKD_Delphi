@@ -164,10 +164,11 @@ object FModelDetail: TFModelDetail
   object BModelDetailAddLike: TButton
     Left = 208
     Top = 296
-    Width = 75
+    Width = 195
     Height = 25
-    Caption = 'j'#39'aime'
+    Caption = 'Supprimer des favoris'
     TabOrder = 2
+    OnClick = BModelDetailAddLikeClick
   end
   object FDQModelDetail: TFDQuery
     Connection = DMDatabase.dbConnection
@@ -184,8 +185,8 @@ object FModelDetail: TFModelDetail
       'INNER JOIN builders bu ON m.builder = bu.id'
       'INNER JOIN country co ON bu.country=co.id'
       'WHERE m.id=:id')
-    Left = 328
-    Top = 256
+    Left = 504
+    Top = 272
     ParamData = <
       item
         Name = 'ID'
@@ -196,7 +197,17 @@ object FModelDetail: TFModelDetail
   end
   object DSModelDetail: TDataSource
     DataSet = FDQModelDetail
-    Left = 424
+    Left = 576
+    Top = 232
+  end
+  object FDQModelFavorite: TFDQuery
+    Connection = DMDatabase.dbConnection
+    Left = 680
     Top = 272
+  end
+  object DSFavorite: TDataSource
+    DataSet = FDQModelFavorite
+    Left = 592
+    Top = 296
   end
 end
