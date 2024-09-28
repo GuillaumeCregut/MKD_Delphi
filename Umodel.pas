@@ -73,7 +73,6 @@ type
     OPDModel: TOpenPictureDialog;
     IModelUpdateImage: TImage;
     IModelNewImage: TImage;
-    Button1: TButton;
     procedure AModelDeleteExecute(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure BModelAddClick(Sender: TObject);
@@ -84,7 +83,6 @@ type
     procedure SavePicture(src: string; dest: string; image: TImage);
     procedure IModelNewImageClick(Sender: TObject);
     procedure TSModelAddShow(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
   private
     { Déclarations privées }
     newPicturePath : string;
@@ -108,12 +106,17 @@ uses
 procedure TFModel.AModelDeleteExecute(Sender: TObject);
 var
   id : Integer;
-  query : string;
+  query, name : string;
 begin
   id:=DSModel.DataSet.FieldByName('id').AsInteger;
-  query := 'DELETE FROM model WHERE id=:id';
-  DMDatabase.dbConnection.ExecSQL(query,[id]);
-  reloadValues;
+  name:=DSModel.DataSet.FieldByName('name').AsString;
+  if MessageDlg('Voulez vous supprimer ' + name + ' ?', TMsgDlgType.mtWarning,
+    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, TMsgDlgBtn.mbNo) = mrYes then
+  begin
+    query := 'DELETE FROM model WHERE id=:id';
+    DMDatabase.dbConnection.ExecSQL(query,[id]);
+    reloadValues;
+  end;
 end;
 
 procedure TFModel.AModelShowDetailsExecute(Sender: TObject);
@@ -241,14 +244,6 @@ begin
    SavePicture(newPicturePath,newPicture,IModelUpdateImage);
    newPicturePath:='';
    reloadValues;
-end;
-
-procedure TFModel.Button1Click(Sender: TObject);
-var
-  toto : string;
-begin
- toto:=EModelName.Text;
-
 end;
 
 function TFModel.createPictureName(name: string; id: integer): string;
