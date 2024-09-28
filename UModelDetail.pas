@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  System.Classes, Vcl.Graphics,System.UITypes,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
@@ -43,6 +43,7 @@ type
     procedure LLModelDetailLinkClick(Sender: TObject; const Link: string;
       LinkType: TSysLinkType);
     procedure BModelDetailAddLikeClick(Sender: TObject);
+    procedure BModelDetailAddStockClick(Sender: TObject);
   private
     { Déclarations privées }
     isWhish : boolean;
@@ -84,6 +85,23 @@ begin
   end;
   isWhish:= not isWhish;
   reloadValues;
+end;
+
+procedure TFModelDetail.BModelDetailAddStockClick(Sender: TObject);
+var
+  name : String;
+begin
+  name := DBTModelName.Caption;
+  if MessageDlg('Voulez vous Ajouter ' + name + ' dans votre stock?', TMsgDlgType.mtWarning,
+    [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, TMsgDlgBtn.mbNo) = mrYes then
+  begin
+  try
+     DMDatabase.addKitInStock(idModel,DMDatabase.inStock);
+     showMessage('Modèle ajouté au stock');
+  except
+
+  end;
+  end;
 end;
 
 procedure TFModelDetail.FormCreate(Sender: TObject);

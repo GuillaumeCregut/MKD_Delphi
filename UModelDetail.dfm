@@ -160,6 +160,7 @@ object FModelDetail: TFModelDetail
     Height = 25
     Caption = 'Ajouter au stock'
     TabOrder = 1
+    OnClick = BModelDetailAddStockClick
   end
   object BModelDetailAddLike: TButton
     Left = 208
