@@ -1246,4 +1246,22 @@ object DMDatabase: TDMDatabase
     Left = 536
     Top = 144
   end
+  object FDTStock: TFDTable
+    Connection = dbConnection
+    TableName = 'model_user'
+    Left = 80
+    Top = 216
+  end
+  object FDTStatus: TFDTable
+    AfterOpen = FDTStatusAfterOpen
+    Connection = dbConnection
+    TableName = 'status'
+    Left = 544
+    Top = 304
+  end
+  object DSSystem: TDataSource
+    DataSet = SystemQuery
+    Left = 488
+    Top = 240
+  end
 end
