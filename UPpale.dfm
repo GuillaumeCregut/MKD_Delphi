@@ -87,6 +87,7 @@ object FPpale: TFPpale
       Caption = 'Kits'
       object Vuegnrale1: TMenuItem
         Caption = 'Vue g'#233'n'#233'rale'
+        OnClick = Vuegnrale1Click
       end
       object Kitscommands1: TMenuItem
         Caption = 'Kits command'#233's'
