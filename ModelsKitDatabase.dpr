@@ -13,7 +13,8 @@ uses
   UScale in 'UScale.pas' {FScale},
   UBuilder in 'UBuilder.pas' {FBuilder},
   Umodel in 'Umodel.pas' {FModel},
-  UModelDetail in 'UModelDetail.pas' {FModelDetail};
+  UModelDetail in 'UModelDetail.pas' {FModelDetail},
+  UStockGlobal in 'UStockGlobal.pas' {FStockGlobal};
 
 {$R *.res}
 
@@ -30,5 +31,6 @@ begin
   Application.CreateForm(TFBuilder, FBuilder);
   Application.CreateForm(TFModel, FModel);
   Application.CreateForm(TFModelDetail, FModelDetail);
+  Application.CreateForm(TFStockGlobal, FStockGlobal);
   Application.Run;
 end.

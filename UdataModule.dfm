@@ -26,8 +26,8 @@ object DMDatabase: TDMDatabase
   object SystemQuery: TFDQuery
     Connection = dbConnection
     Transaction = Transaction
-    Left = 424
-    Top = 168
+    Left = 496
+    Top = 232
   end
   object Transaction: TFDTransaction
     Connection = dbConnection
@@ -1261,7 +1261,7 @@ object DMDatabase: TDMDatabase
   end
   object DSSystem: TDataSource
     DataSet = SystemQuery
-    Left = 488
-    Top = 240
+    Left = 552
+    Top = 232
   end
 end
