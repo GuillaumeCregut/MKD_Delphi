@@ -36,7 +36,6 @@ type
     Choisirunkit2: TMenuItem;
     Exporterlabase1: TMenuItem;
     SBMain: TStatusBar;
-    DataSource1: TDataSource;
     Quitter1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure Marques1Click(Sender: TObject);

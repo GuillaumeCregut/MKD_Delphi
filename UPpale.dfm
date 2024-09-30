@@ -110,8 +110,4 @@ object FPpale: TFPpale
       end
     end
   end
-  object DataSource1: TDataSource
-    Left = 464
-    Top = 296
-  end
 end
