@@ -28,10 +28,13 @@ type
     PUMKitInStock: TPopupMenu;
     AShowDetail: TAction;
     Voirlesdtails1: TMenuItem;
+    ARemoveStock: TAction;
+    Supprimer1: TMenuItem;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure AShowDetailExecute(Sender: TObject);
     procedure BKitInStockMoveClick(Sender: TObject);
+    procedure ARemoveStockExecute(Sender: TObject);
   private
     { Déclarations privées }
     stockId: Integer;
@@ -46,6 +49,22 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFKitInStock.ARemoveStockExecute(Sender: TObject);
+var
+idKit : integer;
+name : string;
+begin
+  name := DSKitInStock.DataSet.FieldByName('name').AsString;
+  if MessageDlg('Voulez vous suppripmer ' + name + 'du stock ?',
+  TMsgDlgType.mtWarning, [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0,
+  TMsgDlgBtn.mbNo) = mrYes then
+  begin
+     idKit:= DSKitInStock.DataSet.FieldByName('id').AsInteger;
+     DMDatabase.moveStock(idKit,0);
+     FDQKitInStock.Refresh;
+  end;
+end;
 
 procedure TFKitInStock.AShowDetailExecute(Sender: TObject);
 var

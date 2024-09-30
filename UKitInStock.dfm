@@ -140,12 +140,19 @@ object FKitInStock: TFKitInStock
       Caption = 'Voir les d'#233'tails'
       OnExecute = AShowDetailExecute
     end
+    object ARemoveStock: TAction
+      Caption = 'Supprimer'
+      OnExecute = ARemoveStockExecute
+    end
   end
   object PUMKitInStock: TPopupMenu
     Left = 888
     Top = 464
     object Voirlesdtails1: TMenuItem
       Action = AShowDetail
+    end
+    object Supprimer1: TMenuItem
+      Action = ARemoveStock
     end
   end
 end
