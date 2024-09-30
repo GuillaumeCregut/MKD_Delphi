@@ -155,7 +155,7 @@ begin
 
   begin
      query:= 'UPDATE model_user set state=:state WHERE id=:id';
-     dbConnection.ExecSQL(query,[idModel,stock]);
+     dbConnection.ExecSQL(query,[stock,idModel]);
   end;
 end;
 

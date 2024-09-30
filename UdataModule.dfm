@@ -1253,8 +1253,11 @@ object DMDatabase: TDMDatabase
     Top = 216
   end
   object FDTStatus: TFDTable
+    Active = True
     AfterOpen = FDTStatusAfterOpen
+    IndexFieldNames = 'id'
     Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'status'
     Left = 544
     Top = 304

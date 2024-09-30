@@ -29,7 +29,7 @@ type
     Statistiques2: TMenuItem;
     Vuegnrale1: TMenuItem;
     Kitscommands1: TMenuItem;
-    Kitscommands2: TMenuItem;
+    KitsStock: TMenuItem;
     Kitsencours1: TMenuItem;
     Choisirunkit1: TMenuItem;
     Choisirunkit2: TMenuItem;
@@ -47,6 +47,9 @@ type
     procedure Constructeurs1Click(Sender: TObject);
     procedure Marques2Click(Sender: TObject);
     procedure Vuegnrale1Click(Sender: TObject);
+    procedure KitsStockClick(Sender: TObject);
+    procedure Kitscommands1Click(Sender: TObject);
+    procedure Kitsencours1Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -64,7 +67,7 @@ implementation
 
 {$R *.dfm}
 
-uses UdataModule, System.IOUtils;
+uses UdataModule, System.IOUtils, UFormValues, UKitInStock;
 
 procedure TFPpale.initDatabase(path: string);
 var
@@ -98,6 +101,27 @@ begin
     isSetup := false;
   end;
   DMDatabase.dbConnection.Close;
+end;
+
+procedure TFPpale.Kitscommands1Click(Sender: TObject);
+begin
+   FKitInStock.myValues.caption:='Kit commandés';
+  FKitInStock.myValues.stock:=DMDatabase.buyed;
+  FKitInStock.ShowModal;
+end;
+
+procedure TFPpale.KitsStockClick(Sender: TObject);
+begin
+  FKitInStock.myValues.caption:='Kit en stock';
+  FKitInStock.myValues.stock:=DMDatabase.inStock;
+  FKitInStock.ShowModal;
+end;
+
+procedure TFPpale.Kitsencours1Click(Sender: TObject);
+begin
+    FKitInStock.myValues.caption:='Kit en cours';
+  FKitInStock.myValues.stock:=DMDatabase.onStash;
+  FKitInStock.ShowModal;
 end;
 
 procedure TFPpale.Marques1Click(Sender: TObject);

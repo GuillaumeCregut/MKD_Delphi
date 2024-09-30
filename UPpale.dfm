@@ -91,12 +91,15 @@ object FPpale: TFPpale
       end
       object Kitscommands1: TMenuItem
         Caption = 'Kits command'#233's'
+        OnClick = Kitscommands1Click
       end
-      object Kitscommands2: TMenuItem
+      object KitsStock: TMenuItem
         Caption = 'Kits en stock'
+        OnClick = KitsStockClick
       end
       object Kitsencours1: TMenuItem
         Caption = 'Kits en cours'
+        OnClick = Kitsencours1Click
       end
       object Choisirunkit1: TMenuItem
         Caption = 'Choisir un kit'
