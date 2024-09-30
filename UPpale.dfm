@@ -106,6 +106,7 @@ object FPpale: TFPpale
       end
       object Choisirunkit2: TMenuItem
         Caption = 'Kits termin'#233's'
+        OnClick = Choisirunkit2Click
       end
     end
   end
