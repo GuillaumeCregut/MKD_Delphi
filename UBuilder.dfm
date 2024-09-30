@@ -47,7 +47,7 @@ object FBuilder: TFBuilder
     Top = 280
     Width = 624
     Height = 161
-    ActivePage = TSBuilderUpdate
+    ActivePage = TSBuilderAdd
     Align = alBottom
     TabOrder = 1
     object TSBuilderAdd: TTabSheet
