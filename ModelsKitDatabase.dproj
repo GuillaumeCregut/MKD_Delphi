@@ -170,6 +170,11 @@
             <Form>FStockGlobal</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UKitInStock.pas">
+            <Form>FKitInStock</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UFormValues.pas"/>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>

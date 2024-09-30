@@ -14,7 +14,9 @@ uses
   UBuilder in 'UBuilder.pas' {FBuilder},
   Umodel in 'Umodel.pas' {FModel},
   UModelDetail in 'UModelDetail.pas' {FModelDetail},
-  UStockGlobal in 'UStockGlobal.pas' {FStockGlobal};
+  UStockGlobal in 'UStockGlobal.pas' {FStockGlobal},
+  UKitInStock in 'UKitInStock.pas' {FKitInStock},
+  UFormValues in 'UFormValues.pas';
 
 {$R *.res}
 
@@ -32,5 +34,6 @@ begin
   Application.CreateForm(TFModel, FModel);
   Application.CreateForm(TFModelDetail, FModelDetail);
   Application.CreateForm(TFStockGlobal, FStockGlobal);
+  Application.CreateForm(TFKitInStock, FKitInStock);
   Application.Run;
 end.
