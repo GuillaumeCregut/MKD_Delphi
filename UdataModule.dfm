@@ -6,80 +6,84 @@ object DMDatabase: TDMDatabase
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'brand'
-    Left = 24
-    Top = 16
+    Left = 152
+    Top = 208
   end
   object dbConnection: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
+      
+        'Database=F:\projets\Embarcadero\ModelKitDatabase\Win32\Debug\Mod' +
+        'elsKitDatabase.db'
       'DriverID=SQLite')
+    Connected = True
     LoginPrompt = False
     OnError = dbConnectionError
-    Left = 184
-    Top = 160
+    Left = 24
+    Top = 24
   end
   object SystemQuery: TFDQuery
     Connection = dbConnection
     Transaction = Transaction
-    Left = 496
-    Top = 232
+    Left = 552
+    Top = 152
   end
   object Transaction: TFDTransaction
     Connection = dbConnection
-    Left = 344
-    Top = 144
+    Left = 464
+    Top = 160
   end
   object FDTableCountry: TFDTable
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'country'
-    Left = 240
-    Top = 72
+    Left = 48
+    Top = 144
   end
   object FDTableCategory: TFDTable
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'category'
-    Left = 96
-    Top = 288
+    Left = 152
+    Top = 144
   end
   object FDTablePeriod: TFDTable
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'period'
-    Left = 384
-    Top = 240
+    Left = 48
+    Top = 344
   end
   object FDTableScale: TFDTable
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'scale'
-    Left = 336
-    Top = 368
+    Left = 152
+    Top = 288
   end
   object FDTableBuilder: TFDTable
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'builders'
-    Left = 304
-    Top = 224
+    Left = 48
+    Top = 272
   end
   object FDTableModel: TFDTable
     Connection = dbConnection
     TableName = 'model'
-    Left = 472
-    Top = 352
+    Left = 248
+    Top = 144
   end
   object VILMKD: TVirtualImageList
     Images = <>
     ImageCollection = ImageCollectionMKD
-    Left = 440
-    Top = 88
+    Left = 464
+    Top = 16
   end
   object ImageCollectionMKD: TImageCollection
     Images = <
@@ -1237,14 +1241,14 @@ object DMDatabase: TDMDatabase
               E8A2C97B1C40E4014027F97F24C0F743B99730A20000000049454E44AE426082}
           end>
       end>
-    Left = 536
-    Top = 144
+    Left = 568
+    Top = 16
   end
   object FDTStock: TFDTable
     Connection = dbConnection
     TableName = 'model_user'
-    Left = 80
-    Top = 216
+    Left = 48
+    Top = 208
   end
   object FDTStatus: TFDTable
     AfterOpen = FDTStatusAfterOpen
@@ -1252,12 +1256,12 @@ object DMDatabase: TDMDatabase
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
     TableName = 'status'
-    Left = 544
-    Top = 304
+    Left = 152
+    Top = 352
   end
   object DSSystem: TDataSource
     DataSet = SystemQuery
-    Left = 552
-    Top = 232
+    Left = 544
+    Top = 216
   end
 end
