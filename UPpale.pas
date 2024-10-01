@@ -7,7 +7,8 @@ uses
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Menus, Vcl.ComCtrls, System.IniFiles, FireDAC.Comp.Client, Vcl.StdCtrls,
-  UBrand, UCountry, UCategory, UPeriod, UScale, UBuilder, Umodel, UStockGlobal;
+  UBrand, UCountry, UCategory, UPeriod, UScale, UBuilder, Umodel, UStockGlobal,
+  UFinishedKit;
 
 type
   TFPpale = class(TForm)
@@ -35,7 +36,6 @@ type
     Choisirunkit2: TMenuItem;
     Exporterlabase1: TMenuItem;
     SBMain: TStatusBar;
-    DataSource1: TDataSource;
     Quitter1: TMenuItem;
     procedure FormCreate(Sender: TObject);
     procedure Marques1Click(Sender: TObject);
@@ -50,6 +50,7 @@ type
     procedure KitsStockClick(Sender: TObject);
     procedure Kitscommands1Click(Sender: TObject);
     procedure Kitsencours1Click(Sender: TObject);
+    procedure Choisirunkit2Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -171,6 +172,11 @@ end;
 procedure TFPpale.Catgories2Click(Sender: TObject);
 begin
   FScale.ShowModal;
+end;
+
+procedure TFPpale.Choisirunkit2Click(Sender: TObject);
+begin
+  FFinishedKit.ShowModal;
 end;
 
 procedure TFPpale.Constructeurs1Click(Sender: TObject);

@@ -106,11 +106,8 @@ object FPpale: TFPpale
       end
       object Choisirunkit2: TMenuItem
         Caption = 'Kits termin'#233's'
+        OnClick = Choisirunkit2Click
       end
     end
-  end
-  object DataSource1: TDataSource
-    Left = 464
-    Top = 296
   end
 end
