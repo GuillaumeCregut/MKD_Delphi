@@ -1,3 +1,11 @@
 __recovery/*
 __history/*
 *.dproj.local
+win32/Release/*
+!/Win32/Release/ModelsKitDatabase.zip
+win32/Debug/*
+*.identcache
+*.dsk
+*.dsv
+*~dsk
+notes.txt

@@ -4,7 +4,7 @@
         <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>VCL</FrameworkType>
         <Base>True</Base>
-        <Config Condition="'$(Config)'==''">Debug</Config>
+        <Config Condition="'$(Config)'==''">Release</Config>
         <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <ProjectName Condition="'$(ProjectName)'==''">ModelsKitDatabase</ProjectName>
         <TargetedPlatforms>3</TargetedPlatforms>
@@ -103,6 +103,8 @@
     <PropertyGroup Condition="'$(Cfg_1_Win32)'!=''">
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
+        <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <VerInfo_Locale>1033</VerInfo_Locale>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -124,14 +126,76 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="UPpale.pas">
-            <Form>Form1</Form>
+            <Form>FPpale</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <DCCReference Include="UdataModule.pas">
-            <Form>DataModule1</Form>
+            <Form>DMDatabase</Form>
             <FormType>dfm</FormType>
             <DesignClass>TDataModule</DesignClass>
         </DCCReference>
+        <DCCReference Include="UBrand.pas">
+            <Form>FBrand</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCountry.pas">
+            <Form>FCountry</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UCategory.pas">
+            <Form>FCategory</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UPeriod.pas">
+            <Form>FPeriod</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UScale.pas">
+            <Form>FScale</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UBuilder.pas">
+            <Form>FBuilder</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="Umodel.pas">
+            <Form>FModel</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UModelDetail.pas">
+            <Form>FModelDetail</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UStockGlobal.pas">
+            <Form>FStockGlobal</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UKitInStock.pas">
+            <Form>FKitInStock</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UFormValues.pas"/>
+        <DCCReference Include="UFinishedKit.pas">
+            <Form>FFinishedKit</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UFinishedDetail.pas">
+            <Form>FFinishedDetail</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="URandomKit.pas">
+            <Form>FRandomKit</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <RcItem Include="database.sql">
+            <ContainerId>ResourceItem</ContainerId>
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>Resource_1</ResourceId>
+        </RcItem>
+        <RcItem Include="nopicture.png">
+            <ResourceType>RCDATA</ResourceType>
+            <ResourceId>No_image</ResourceId>
+        </RcItem>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -152,11 +216,27 @@
                 <Source>
                     <Source Name="MainSource">ModelsKitDatabase.dpr</Source>
                 </Source>
+                <Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Composants Microsoft Office 2000 Sample Automation Server Wrapper</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Composants Microsoft Office XP Sample Automation Server Wrapper</Excluded_Packages>
+                </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
                 <DeployFile LocalName="Win32\Debug\ModelsKitDatabase.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>ModelsKitDatabase.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="database.sql" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="nopicture.png" Configuration="Debug" Class="ProjectFile">
+                    <Platform Name="Win32">
+                        <RemoteDir>.\</RemoteDir>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
