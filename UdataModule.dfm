@@ -12,11 +12,7 @@ object DMDatabase: TDMDatabase
   object dbConnection: TFDConnection
     Params.Strings = (
       'LockingMode=Normal'
-      
-        'Database=F:\projets\Embarcadero\ModelKitDatabase\Win32\Debug\Mod' +
-        'elsKitDatabase.db'
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     OnError = dbConnectionError
     Left = 184
