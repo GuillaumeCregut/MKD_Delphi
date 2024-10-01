@@ -71,7 +71,6 @@ object FPpale: TFPpale
     object Profil1: TMenuItem
       Caption = 'Profil'
       Checked = True
-      Enabled = False
       object Fournisseurs1: TMenuItem
         Caption = 'Fournisseurs'
       end
