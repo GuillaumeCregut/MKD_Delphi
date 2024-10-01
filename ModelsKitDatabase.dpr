@@ -18,7 +18,8 @@ uses
   UKitInStock in 'UKitInStock.pas' {FKitInStock},
   UFormValues in 'UFormValues.pas',
   UFinishedKit in 'UFinishedKit.pas' {FFinishedKit},
-  UFinishedDetail in 'UFinishedDetail.pas' {FFinishedDetail};
+  UFinishedDetail in 'UFinishedDetail.pas' {FFinishedDetail},
+  URandomKit in 'URandomKit.pas' {FRandomKit};
 
 {$R *.res}
 
@@ -39,5 +40,6 @@ begin
   Application.CreateForm(TFKitInStock, FKitInStock);
   Application.CreateForm(TFFinishedKit, FFinishedKit);
   Application.CreateForm(TFFinishedDetail, FFinishedDetail);
+  Application.CreateForm(TFRandomKit, FRandomKit);
   Application.Run;
 end.

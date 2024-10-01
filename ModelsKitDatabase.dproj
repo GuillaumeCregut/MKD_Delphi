@@ -183,6 +183,10 @@
             <Form>FFinishedDetail</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="URandomKit.pas">
+            <Form>FRandomKit</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>
