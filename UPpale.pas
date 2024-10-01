@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Menus, Vcl.ComCtrls, System.IniFiles, FireDAC.Comp.Client, Vcl.StdCtrls,
   UBrand, UCountry, UCategory, UPeriod, UScale, UBuilder, Umodel, UStockGlobal,
-  UFinishedKit;
+  UFinishedKit, URandomKit;
 
 type
   TFPpale = class(TForm)
@@ -185,6 +185,8 @@ begin
   DMDatabase.SystemQuery.Open(query,[DMDatabase.inStock]);
   idKit:=DMDatabase.DSSystem.DataSet.FieldByName('id').AsInteger;
   DMDatabase.SystemQuery.Close;
+  FRandomKit.idKit:=idKit;
+  FRandomKit.ShowModal;
 end;
 
 procedure TFPpale.Choisirunkit2Click(Sender: TObject);
