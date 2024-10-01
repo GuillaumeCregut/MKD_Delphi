@@ -38,6 +38,8 @@ implementation
 
 {$R *.dfm}
 
+uses UFinishedDetail;
+
 procedure TFFinishedKit.FormShow(Sender: TObject);
 begin
   FDQFinishedKit.Close;
@@ -59,7 +61,7 @@ var
   idModel: Integer;
   query, name: string;
 begin
-  name := DSFinishedKit.DataSet.FieldByName('nom').AsString;
+  name := DSFinishedKit.DataSet.FieldByName('name').AsString;
   if MessageDlg('Voulez vous supprimer ' + name + ' ?', TMsgDlgType.mtWarning,
     [TMsgDlgBtn.mbYes, TMsgDlgBtn.mbNo], 0, TMsgDlgBtn.mbNo) = mrYes then
   begin
@@ -74,7 +76,8 @@ var
   idModel: Integer;
 begin
   idModel := DSFinishedKit.DataSet.FieldByName('id').AsInteger;
-
+  FFinishedDetail.idKit:=idModel;
+  FFinishedDetail.ShowModal;
 end;
 
 end.
