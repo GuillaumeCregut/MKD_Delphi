@@ -19,7 +19,6 @@ object DMDatabase: TDMDatabase
     Connected = True
     LoginPrompt = False
     OnError = dbConnectionError
-    AfterConnect = dbConnectionAfterConnect
     Left = 184
     Top = 160
   end
@@ -67,7 +66,6 @@ object DMDatabase: TDMDatabase
     Top = 368
   end
   object FDTableBuilder: TFDTable
-    Active = True
     IndexFieldNames = 'id'
     Connection = dbConnection
     ResourceOptions.AssignedValues = [rvEscapeExpand]
@@ -1253,7 +1251,6 @@ object DMDatabase: TDMDatabase
     Top = 216
   end
   object FDTStatus: TFDTable
-    Active = True
     AfterOpen = FDTStatusAfterOpen
     IndexFieldNames = 'id'
     Connection = dbConnection

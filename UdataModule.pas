@@ -31,7 +31,6 @@ type
     DSSystem: TDataSource;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
-    procedure dbConnectionAfterConnect(Sender: TObject);
     procedure FDTStatusAfterOpen(DataSet: TDataSet);
   private
     { Déclarations privées }
@@ -45,6 +44,7 @@ type
     procedure addKitInStock(idModel: Integer; stock: integer);
     procedure moveStock(idModel: Integer; stock: Integer);
     function checkDoubleWish(idModel : integer) : boolean;
+    procedure connectTables;
   end;
 
 var
@@ -89,9 +89,9 @@ begin
   result:=DSSystem.DataSet.FieldByName('number').asInteger>0;
 end;
 
-procedure TDMDatabase.dbConnectionAfterConnect(Sender: TObject);
+procedure TDMDatabase.connectTables;
 begin
-  FDTableBrand.Active:=true;
+   FDTableBrand.Active:=true;
   FDTableBuilder.Active:=true;
   FDTableCategory.Active:=true;
   FDTableCountry.Active:=true;
