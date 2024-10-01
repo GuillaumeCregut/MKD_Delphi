@@ -238,6 +238,11 @@ begin
   DMDatabase.dbConnection.Close;
   DMDatabase.dbConnection.Params.Database := dataPath;
   DMDatabase.dbConnection.Open;
+  while ( not DMDatabase.dbConnection.Connected) do
+  begin
+    Application.ProcessMessages;
+  end;
+  DMDatabase.connectTables;
 end;
 
 procedure TFPpale.Vuegnrale1Click(Sender: TObject);
