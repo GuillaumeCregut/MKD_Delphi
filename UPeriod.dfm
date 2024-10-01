@@ -40,7 +40,7 @@ object FPeriod: TFPeriod
     Top = 362
     Width = 957
     Height = 193
-    ActivePage = TSPeriodUpdate
+    ActivePage = TSPeriodAdd
     Align = alBottom
     TabOrder = 1
     object TSPeriodAdd: TTabSheet
@@ -48,16 +48,16 @@ object FPeriod: TFPeriod
       object Label3: TLabel
         Left = 16
         Top = 8
-        Width = 34
+        Width = 105
         Height = 15
-        Caption = 'Label3'
+        Caption = 'Ajouter une p'#233'riode'
       end
       object Label4: TLabel
         Left = 32
         Top = 48
-        Width = 34
+        Width = 33
         Height = 15
-        Caption = 'Label4'
+        Caption = 'Nom :'
       end
       object EPeriodName: TEdit
         Left = 104
