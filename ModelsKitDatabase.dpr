@@ -17,7 +17,8 @@ uses
   UStockGlobal in 'UStockGlobal.pas' {FStockGlobal},
   UKitInStock in 'UKitInStock.pas' {FKitInStock},
   UFormValues in 'UFormValues.pas',
-  UFinishedKit in 'UFinishedKit.pas' {FFinishedKit};
+  UFinishedKit in 'UFinishedKit.pas' {FFinishedKit},
+  UFinishedDetail in 'UFinishedDetail.pas' {FFinishedDetail};
 
 {$R *.res}
 
@@ -37,5 +38,6 @@ begin
   Application.CreateForm(TFStockGlobal, FStockGlobal);
   Application.CreateForm(TFKitInStock, FKitInStock);
   Application.CreateForm(TFFinishedKit, FFinishedKit);
+  Application.CreateForm(TFFinishedDetail, FFinishedDetail);
   Application.Run;
 end.
