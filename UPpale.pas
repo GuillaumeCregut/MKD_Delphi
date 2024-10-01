@@ -51,6 +51,7 @@ type
     procedure Kitscommands1Click(Sender: TObject);
     procedure Kitsencours1Click(Sender: TObject);
     procedure Choisirunkit2Click(Sender: TObject);
+    procedure Choisirunkit1Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -172,6 +173,18 @@ end;
 procedure TFPpale.Catgories2Click(Sender: TObject);
 begin
   FScale.ShowModal;
+end;
+
+procedure TFPpale.Choisirunkit1Click(Sender: TObject);
+var
+  query : String;
+  idKit : Integer;
+begin
+  DMDatabase.SystemQuery.Close;
+  query:='SELECT id FROM model_user WHERE state=:status  ORDER BY RANDOM() LIMIT  1;';
+  DMDatabase.SystemQuery.Open(query,[DMDatabase.inStock]);
+  idKit:=DMDatabase.DSSystem.DataSet.FieldByName('id').AsInteger;
+  DMDatabase.SystemQuery.Close;
 end;
 
 procedure TFPpale.Choisirunkit2Click(Sender: TObject);
