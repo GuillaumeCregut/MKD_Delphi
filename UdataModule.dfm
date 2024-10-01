@@ -1264,4 +1264,13 @@ object DMDatabase: TDMDatabase
     Left = 544
     Top = 216
   end
+  object FDTableProvider: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'provider'
+    Left = 256
+    Top = 224
+  end
 end
