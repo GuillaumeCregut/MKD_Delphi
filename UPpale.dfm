@@ -77,6 +77,7 @@ object FPpale: TFPpale
       end
       object Fournisseurs2: TMenuItem
         Caption = 'Commandes'
+        OnClick = Fournisseurs2Click
       end
       object Statistiques1: TMenuItem
         Caption = 'Statistiques'
