@@ -1273,4 +1273,13 @@ object DMDatabase: TDMDatabase
     Left = 256
     Top = 224
   end
+  object FDTableOrders: TFDTable
+    Active = True
+    IndexFieldNames = 'id'
+    Connection = dbConnection
+    ResourceOptions.AssignedValues = [rvEscapeExpand]
+    TableName = 'orders'
+    Left = 256
+    Top = 296
+  end
 end

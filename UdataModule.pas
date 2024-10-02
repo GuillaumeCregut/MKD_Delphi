@@ -30,6 +30,7 @@ type
     FDTStatus: TFDTable;
     DSSystem: TDataSource;
     FDTableProvider: TFDTable;
+    FDTableOrders: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
     procedure FDTStatusAfterOpen(DataSet: TDataSet);
@@ -102,6 +103,7 @@ begin
   FDTStatus.Active:=true;
   FDTStock.Active:=true;
   FDTableProvider.Active:=true;
+  FDTableOrders.Active:=true;
 end;
 
 procedure TDMDatabase.dbConnectionError(ASender, AInitiator: TObject;
