@@ -77,7 +77,6 @@ end;
 procedure TFProvider.BProviderUpdateClick(Sender: TObject);
 var
   name: String;
-  id : integer;
 begin
   name := EProviderNewName.Text;
   DMDatabase.FDTableProvider.Edit;
