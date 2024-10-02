@@ -109,7 +109,7 @@ end;
 procedure TDMDatabase.dbConnectionError(ASender, AInitiator: TObject;
   var AException: Exception);
 begin
-  // raise Exception.Create('Erreur dans la base');
+  raise Exception.Create('Erreur dans la base');
 end;
 
 procedure TDMDatabase.FDTStatusAfterOpen(DataSet: TDataSet);
