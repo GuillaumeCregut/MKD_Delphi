@@ -19,7 +19,8 @@ uses
   UFormValues in 'UFormValues.pas',
   UFinishedKit in 'UFinishedKit.pas' {FFinishedKit},
   UFinishedDetail in 'UFinishedDetail.pas' {FFinishedDetail},
-  URandomKit in 'URandomKit.pas' {FRandomKit};
+  URandomKit in 'URandomKit.pas' {FRandomKit},
+  UProvider in 'UProvider.pas' {FProvider};
 
 {$R *.res}
 
@@ -41,5 +42,6 @@ begin
   Application.CreateForm(TFFinishedKit, FFinishedKit);
   Application.CreateForm(TFFinishedDetail, FFinishedDetail);
   Application.CreateForm(TFRandomKit, FRandomKit);
+  Application.CreateForm(TFProvider, FProvider);
   Application.Run;
 end.
