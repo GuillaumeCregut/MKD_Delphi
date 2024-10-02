@@ -8,7 +8,7 @@ uses
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, Vcl.Grids, Vcl.DBGrids,
   Vcl.Menus, Vcl.ComCtrls, System.IniFiles, FireDAC.Comp.Client, Vcl.StdCtrls,
   UBrand, UCountry, UCategory, UPeriod, UScale, UBuilder, Umodel, UStockGlobal,
-  UFinishedKit, URandomKit;
+  UFinishedKit, URandomKit, UProvider;
 
 type
   TFPpale = class(TForm)
@@ -52,6 +52,7 @@ type
     procedure Kitsencours1Click(Sender: TObject);
     procedure Choisirunkit2Click(Sender: TObject);
     procedure Choisirunkit1Click(Sender: TObject);
+    procedure Fournisseurs1Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -231,6 +232,11 @@ begin
       ('Un problème a été rencontré avec la base de données.');
   end;
   startDB(dataPath);
+end;
+
+procedure TFPpale.Fournisseurs1Click(Sender: TObject);
+begin
+  FProvider.ShowModal;
 end;
 
 procedure TFPpale.startDB(dataPath: String);

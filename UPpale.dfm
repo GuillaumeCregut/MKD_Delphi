@@ -73,6 +73,7 @@ object FPpale: TFPpale
       Checked = True
       object Fournisseurs1: TMenuItem
         Caption = 'Fournisseurs'
+        OnClick = Fournisseurs1Click
       end
       object Fournisseurs2: TMenuItem
         Caption = 'Commandes'
