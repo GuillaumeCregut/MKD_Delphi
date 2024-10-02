@@ -20,7 +20,8 @@ uses
   UFinishedKit in 'UFinishedKit.pas' {FFinishedKit},
   UFinishedDetail in 'UFinishedDetail.pas' {FFinishedDetail},
   URandomKit in 'URandomKit.pas' {FRandomKit},
-  UProvider in 'UProvider.pas' {FProvider};
+  UProvider in 'UProvider.pas' {FProvider},
+  UOrders in 'UOrders.pas' {FOrders};
 
 {$R *.res}
 
@@ -43,5 +44,6 @@ begin
   Application.CreateForm(TFFinishedDetail, FFinishedDetail);
   Application.CreateForm(TFRandomKit, FRandomKit);
   Application.CreateForm(TFProvider, FProvider);
+  Application.CreateForm(TFOrders, FOrders);
   Application.Run;
 end.
