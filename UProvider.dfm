@@ -46,7 +46,6 @@ object FProvider: TFProvider
     Height = 305
     Align = alBottom
     TabOrder = 1
-    ExplicitWidth = 624
     object Label5: TLabel
       Left = 9
       Top = 24

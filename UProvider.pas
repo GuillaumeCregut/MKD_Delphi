@@ -115,7 +115,8 @@ begin
     FDQOrders.Active:=true;
   if not FDQProviderOrderDetails.Active then
     FDQProviderOrderDetails.Active:=true;
-
+  FDQOrders.Refresh;
+  FDQProviderOrderDetails.Refresh;
 end;
 
 procedure TFProvider.MIProviderDeleteClick(Sender: TObject);
