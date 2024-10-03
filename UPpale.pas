@@ -53,6 +53,7 @@ type
     procedure Choisirunkit2Click(Sender: TObject);
     procedure Choisirunkit1Click(Sender: TObject);
     procedure Fournisseurs1Click(Sender: TObject);
+    procedure Fournisseurs2Click(Sender: TObject);
   private
     { Déclarations privées }
     isSetup: boolean;
@@ -70,7 +71,7 @@ implementation
 
 {$R *.dfm}
 
-uses UdataModule, System.IOUtils, UFormValues, UKitInStock;
+uses UdataModule, System.IOUtils, UFormValues, UKitInStock, UOrders;
 
 procedure TFPpale.initDatabase(path: string);
 var
@@ -237,6 +238,11 @@ end;
 procedure TFPpale.Fournisseurs1Click(Sender: TObject);
 begin
   FProvider.ShowModal;
+end;
+
+procedure TFPpale.Fournisseurs2Click(Sender: TObject);
+begin
+  FOrders.ShowModal;
 end;
 
 procedure TFPpale.startDB(dataPath: String);

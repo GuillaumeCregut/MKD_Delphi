@@ -191,6 +191,14 @@
             <Form>FProvider</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="UOrders.pas">
+            <Form>FOrders</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="UOrderModel.pas">
+            <Form>FOrderModel</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <RcItem Include="database.sql">
             <ContainerId>ResourceItem</ContainerId>
             <ResourceType>RCDATA</ResourceType>

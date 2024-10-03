@@ -31,11 +31,14 @@ type
     DSSystem: TDataSource;
     FDTableProvider: TFDTable;
     FDTableOrders: TFDTable;
+    FDTableModelOrder: TFDTable;
+    FDTableModelUser: TFDTable;
     procedure dbConnectionError(ASender, AInitiator: TObject;
       var AException: Exception);
     procedure FDTStatusAfterOpen(DataSet: TDataSet);
   private
     { Déclarations privées }
+    procedure addModelToUser(idModel, provider: Integer; price :real);
   public
     { Déclarations publiques }
     inStock : Integer;
@@ -47,6 +50,8 @@ type
     procedure moveStock(idModel: Integer; stock: Integer);
     function checkDoubleWish(idModel : integer) : boolean;
     procedure connectTables;
+    procedure AddModelToOrder(idModel,qtty, idOrder, idProvider : integer; price: Real) ;
+    function createOrder(idProvider: integer; reference, dateOrder : string): integer;
   end;
 
 var
@@ -66,6 +71,57 @@ begin
     FDTStock.FieldByName('model_id').asInteger:=idModel;
     FDTStock.FieldByName('state').asInteger:=stock;
     FDTStock.Post;
+end;
+
+
+
+procedure TDMDatabase.AddModelToOrder(idModel, qtty, idOrder, idProvider: integer;
+  price: Real);
+begin
+   FDTableModelOrder.Active:=True;
+   FDTableModelOrder.Append;
+   FDTableModelOrder.FieldByName('model_id').AsInteger:=idModel;
+   FDTableModelOrder.FieldByName('qtty').asInteger:=qtty;
+   FDTableModelOrder.FieldByName('order_id').AsInteger:=idOrder;
+   FDTableModelOrder.FieldByName('price').AsFloat:=price;
+   try
+     try
+       FDTableModelOrder.Post;
+     except
+       raise Exception.Create('Impossible d''ajouter le modèle' + IntToStr(idModel)+' dans la commande');
+     end;
+   finally
+      FDTableModelOrder.Active:=false;
+   end;
+  //Add model to model_user
+  for var j := 1 to qtty do
+  begin
+    try
+      addModelToUser(idModel,idProvider,price);
+    except
+       raise Exception.Create('impossible d''jouter le kit au stock');
+    end;
+  end;
+end;
+
+procedure TDMDatabase.addModelToUser(idModel, provider: Integer; price: real);
+begin
+// TODO: Add a model to Model_user
+    FDTableModelUser.Active:=true;
+    FDTableModelUser.Append;
+    FDTableModelUser.FieldByName('model_id').asInteger:=idModel;
+    FDTableModelUser.FieldByName('state').asInteger:=buyed;
+    FDTableModelUser.FieldByName('price').AsFloat:=price;
+    FDTableModelUser.FieldByName('provider').asInteger:=provider;
+    try
+      try
+        FDTableModelUser.Post;
+      except
+        raise Exception.Create('impossible d''jouter le kit au stock');
+      end;
+    finally
+      FDTableModelUser.Active:=false;
+    end;
 end;
 
 
@@ -106,10 +162,30 @@ begin
   FDTableOrders.Active:=true;
 end;
 
+function TDMDatabase.createOrder(idProvider: integer;
+  reference, dateOrder: string): integer;
+var
+  query : String;
+begin
+   FDTableOrders.Append;
+   FDTableOrders.FieldByName('reference').asString:=reference;
+   FDTableOrders.FieldByName('date_order').asString:=dateOrder;
+   FDTableOrders.FieldByName('provider').asInteger:=idProvider;
+   try
+     FDTableOrders.Post;
+   except
+     raise Exception.Create('Impossible d''enregistrer la commande');
+   end;
+  //
+  query:='SELECT id FROM orders WHERE reference=:ref AND provider=:prov';
+  SystemQuery.Open(query,[reference,idProvider]);
+  result := DSSystem.DataSet.FieldByName('id').asInteger;
+end;
+
 procedure TDMDatabase.dbConnectionError(ASender, AInitiator: TObject;
   var AException: Exception);
 begin
-  raise Exception.Create('Erreur dans la base');
+  //raise Exception.Create('Erreur dans la base');
 end;
 
 procedure TDMDatabase.FDTStatusAfterOpen(DataSet: TDataSet);
@@ -144,7 +220,6 @@ procedure TDMDatabase.moveStock(idModel, stock: Integer);
 var
   query : string;
 begin
-// TODO: verifier doublon en favori
   if stock=0 then
   begin
      query:= 'DELETE FROM model_user WHERE id=:id';

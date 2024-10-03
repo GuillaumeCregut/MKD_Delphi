@@ -59,7 +59,7 @@ end;
 procedure TFFinishedKit.MIFinishedDeleteClick(Sender: TObject);
 var
   idModel: Integer;
-  query, name: string;
+  name: string;
 begin
   name := DSFinishedKit.DataSet.FieldByName('name').AsString;
   if MessageDlg('Voulez vous supprimer ' + name + ' ?', TMsgDlgType.mtWarning,
